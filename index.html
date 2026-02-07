@@ -1,362 +1,347 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Banda SU7 - Site Oficial</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="js/all-scripts.js" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <style>
-      /* Seção da Galeria de Fotos */
-      .gallery-section {
-        padding: 60px 20px;
-        text-align: center;
-        background-color: #f4f4f4;
-      }
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banda SU7 | Site Oficial</title>
+  <meta name="description" content="Banda SU7 — shows, agenda, músicas, vídeos e contato para eventos." />
+  <meta name="theme-color" content="#0b0f19" />
 
-      .gallery-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        color: #333;
-      }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Banda SU7 | Site Oficial" />
+  <meta property="og:description" content="Shows, agenda, músicas, vídeos e contato para eventos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og.jpg" />
 
-      .carousel-container {
-        position: relative;
-        max-width: 80%;
-        margin: auto;
-        overflow: hidden;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+  <link rel="icon" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
 
-      .carousel-slides {
-        display: flex;
-        transition: transform 0.5s ease;
-        width: 100%;
-      }
+<body>
+  <!-- Top bar -->
+  <header class="top">
+    <div class="container top__row">
+      <a class="brand" href="#home" aria-label="Ir para o início">
+        <span class="brand__mark">SU7</span>
+        <span class="brand__name">Banda</span>
+      </a>
 
-      .carousel-slide {
-        min-width: 100%;
-        box-sizing: border-box;
-        position: relative;
-        display: flex;
-        justify-content: center; /* Centra a imagem horizontalmente */
-        align-items: center; /* Centra a imagem verticalmente */
-      }
-
-      .carousel-slide img {
-        max-width: 100%;
-        max-height: 500px; /* Limita a altura máxima da imagem */
-        width: auto;
-        height: auto;
-        object-fit: contain; /* Mantém a proporção da imagem */
-        border-radius: 10px;
-      }
-
-      .carousel-controls {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-      }
-
-      .carousel-controls button {
-        background-color: rgba(0, 0, 0, 0.5);
-        border: none;
-        color: white;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 50%;
-      }
-
-      .carousel-thumbnails {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-      }
-
-      .carousel-thumbnails img {
-        width: 80px;
-        height: 60px;
-        cursor: pointer;
-        margin: 0 5px;
-        border-radius: 5px;
-        border: 2px solid transparent;
-        transition: border-color 0.3s;
-      }
-
-      .carousel-thumbnails img.active {
-        border-color: #f39c12;
-      }
-
-      /* Estilos Responsivos */
-      @media (max-width: 768px) {
-        .carousel-thumbnails img {
-          width: 60px;
-          height: 45px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Cabeçalho -->
-    <header class="site-header">
-      <div class="header-content">
-        <!-- Logo da Banda -->
-        <div class="header-logo">
-          <img src="logo-da-banda.png" alt="Logo da Banda" />
-        </div>
-
-        <!-- Menu Hamburger -->
-        <div class="menu-toggle" id="menu-toggle">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
-        <!-- Menu de Navegação -->
-        <nav class="navbar" id="navbar">
-          <div class="header-links">
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="music-links">
-              <a href="#"><i class="fab fa-spotify"></i></a>
-              <a href="#"><i class="fab fa-apple"></i></a>
-              <a href="#"><i class="fab fa-deezer"></i></a>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Seção Principal (Home) -->
-    <section id="home" class="home-section">
-      <div class="banner">
-        <h1>Bem-vindo ao Site Oficial da Banda SU7</h1>
-        <button onclick="scrollToSection('contato')">
-          Ouça nossas músicas
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+          <span class="nav__toggleLine"></span>
+          <span class="nav__toggleLine"></span>
+          <span class="nav__toggleLine"></span>
+          <span class="sr-only">Abrir menu</span>
         </button>
-      </div>
-    </section>
 
-    <!-- Seção História da Banda -->
-    <section class="historia">
-      <div class="historia-content">
-        <div class="historia-texto">
-          <h2>História da Banda</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque eos
-            nesciunt, veritatis iste enim distinctio omnis reiciendis magnam
-            laborum nisi, vel error sapiente earum recusandae harum iure
-            praesentium voluptates cumque architecto, repudiandae ut! Cupiditate
-            inventore cum quod ratione. Consectetur vel, eum temporibus totam
-            quisquam adipisci fugit. Quo quam ratione perferendis totam
-            excepturi, ipsum voluptates nihil corporis amet ipsa accusantium
-            tempora!
-          </p>
-          <a href="/pages/history.html" class="btn-detalhes">Leia Mais</a>
-        </div>
-        <div class="historia-foto">
-          <img src="foto-banda.jpg" alt="Foto da Banda" />
-        </div>
-      </div>
-    </section>
+        <ul class="nav__menu" id="navMenu">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#shows">Shows</a></li>
+          <li><a href="#musica">Música</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#contato" class="btn btn--sm">Contratar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Galeria de Fotos -->
-    <section class="gallery-section">
-      <h2>Galeria de Fotos</h2>
-      <div class="carousel-container">
-        <div class="carousel-slides">
-          <div class="carousel-slide">
-            <img src="/img/img-001.jpg" alt="Imagem 1" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/img/img-002.jpg" alt="Imagem 2" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/img/img-003.jpg" alt="Imagem 3" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/img/img-004.jpg" alt="Imagem 3" />
-          </div>
-          <!-- Adicione mais slides conforme necessário -->
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <div class="pill">AO VIVO • EVENTOS • FESTAS</div>
+        <h1 class="hero__title">
+          Banda <span class="grad">SU7</span>
+        </h1>
+        <p class="hero__subtitle">
+          Show profissional, repertório atualizado e presença de palco.
+          Leve energia de verdade pro seu evento.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn" href="#contato">Solicitar orçamento</a>
+          <a class="btn btn--ghost" href="#shows">Ver agenda</a>
         </div>
-        <div class="carousel-controls">
-          <button id="prev">&#10094;</button>
-          <button id="next">&#10095;</button>
-        </div>
-        <div class="carousel-thumbnails">
-          <img
-            src="/img/img-001.jpg"
-            alt="Thumbnail 1"
-            data-index="0"
-            class="active"
-          />
-          <img src="/img/img-002.jpg" alt="Thumbnail 2" data-index="1" />
-          <img src="/img/img-003.jpg" alt="Thumbnail 3" data-index="2" />
-          <img src="/img/img-004.jpg" alt="Thumbnail 3" data-index="3" />
-          <!-- Adicione mais miniaturas conforme necessário -->
+
+        <div class="hero__stats">
+          <div class="stat">
+            <div class="stat__n">+100</div>
+            <div class="stat__l">Eventos</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">Repertório</div>
+            <div class="stat__l">Pop • Rock • Flash • Atual</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">Som & Luz</div>
+            <div class="stat__l">Estrutura sob demanda</div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Seção Agenda -->
-    <section id="agenda" class="agenda-section">
-      <h2>AGENDA</h2>
-      <div class="event-list">
-        <div class="event-item">
-          <div class="event-date">
-            <span class="event-day">15</span>
-            <span class="event-month">Out</span>
+      <aside class="hero__card">
+        <div class="card">
+          <div class="card__head">
+            <div>
+              <div class="kicker">Próximo show</div>
+              <div class="card__title" id="nextShowTitle">Em breve</div>
+            </div>
+            <span class="badge" id="nextShowBadge">CONFIRMADO</span>
           </div>
-          <div class="event-details">
-            <h3>IGREJA BATISTA Lorem ipsum dolor sit amet.</h3>
-            <p>Local: Espaço das Américas, Cuiabá/MT</p>
+
+          <div class="card__body">
+            <div class="info">
+              <span class="info__k">Data</span>
+              <span class="info__v" id="nextShowDate">—</span>
+            </div>
+            <div class="info">
+              <span class="info__k">Local</span>
+              <span class="info__v" id="nextShowPlace">—</span>
+            </div>
+            <div class="info">
+              <span class="info__k">Cidade</span>
+              <span class="info__v" id="nextShowCity">—</span>
+            </div>
+
+            <a class="btn btn--full" href="#contato">Quero a SU7 no meu evento</a>
+            <p class="tiny">* Datas sujeitas a disponibilidade e logística.</p>
           </div>
         </div>
+      </aside>
+    </div>
+  </main>
 
-        <div class="event-item">
-          <div class="event-date">
-            <span class="event-day">15</span>
-            <span class="event-month">Out</span>
-          </div>
-          <div class="event-details">
-            <h3>IGREJA BATISTA Lorem ipsum dolor sit amet.</h3>
-            <p>Local: Espaço das Américas, Cuiabá/MT</p>
-          </div>
-        </div>
-        <!-- Adicione mais eventos conforme necessário -->
+  <!-- Sobre -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Sobre a banda</h2>
+        <p>
+          A SU7 entrega um show moderno, com identidade, setlist redondo e experiência em eventos
+          corporativos, casamentos, formaturas e festas.
+        </p>
       </div>
-      <a href="/pages/agenda.html" class="btn-all-events"
-        >Ver Agenda Completa</a
-      >
-    </section>
 
-    <!-- Seção de Contato -->
-    <section id="contato" class="contato-section">
-      <h2>Contato</h2>
-      <form id="contactForm">
-        <input type="text" id="name" placeholder="Seu Nome" required />
-        <input type="email" id="email" placeholder="Seu Email" required />
-        <textarea id="message" placeholder="Sua Mensagem" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer class="custom-footer">
-      <div class="footer-top">
-        <!-- Lado Esquerdo: Logo da Banda -->
-        <div class="footer-section logo-and-description">
-          <img src="logo.png" alt="Logo da Banda" class="footer-logo" />
+      <div class="grid grid--2">
+        <div class="panel">
+          <h3>O que você recebe</h3>
+          <ul class="list">
+            <li>✅ Show com dinâmica e presença de palco</li>
+            <li>✅ Setlist atualizado + clássicos que todo mundo canta</li>
+            <li>✅ Pontualidade, organização e profissionalismo</li>
+            <li>✅ Rider técnico e opções de estrutura</li>
+            <li>✅ Conteúdo para divulgação (fotos, cards, vídeo)</li>
+          </ul>
+          <div class="spacer"></div>
+          <a class="btn btn--ghost" href="#contato">Falar com a produção</a>
         </div>
 
-        <!-- Centro: Informações de Contato -->
-        <div class="footer-section contact-info">
-          <h3>Contato para Shows e Eventos</h3>
-          <p>Email: <a href="mailto:contato@banda.com">contato@banda.com</a></p>
-          <p>Telefone: <a href="tel:+5511999999999">+55 11 99999-9999</a></p>
-          <p>
-            WhatsApp:
-            <a href="https://wa.me/5511999999999">+55 11 99999-9999</a>
-          </p>
+        <div class="panel panel--media">
+          <!-- Troque a imagem abaixo pela sua (assets/img/banda.jpg) -->
+          <img class="media" src="assets/img/banda.jpg" alt="Foto da Banda SU7 no palco" />
+          <div class="overlay">
+            <div class="overlay__title">Show que levanta o público</div>
+            <div class="overlay__sub">Experiência, ritmo e entrega.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shows -->
+  <section id="shows" class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <h2>Agenda de shows</h2>
+        <p>Datas confirmadas e próximas apresentações.</p>
+      </div>
+
+      <div class="table">
+        <div class="table__row table__row--head">
+          <div>Data</div>
+          <div>Evento</div>
+          <div>Cidade</div>
+          <div>Status</div>
         </div>
 
-        <!-- Lado Direito: Redes Sociais e Apps de Música -->
-        <div class="footer-section social-and-music">
-          <div class="social-links-container">
-            <h3>Siga-nos nas redes sociais</h3>
-            <div class="social-links">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <!-- Adicione mais ícones conforme necessário -->
+        <!-- Edite as linhas abaixo -->
+        <div class="table__row">
+          <div class="mono">2026-02-15</div>
+          <div>Evento Privado</div>
+          <div>Cuiabá/MT</div>
+          <div><span class="tag tag--ok">Confirmado</span></div>
+        </div>
+        <div class="table__row">
+          <div class="mono">2026-03-01</div>
+          <div>Festa de Aniversário</div>
+          <div>Cáceres/MT</div>
+          <div><span class="tag">Pré-reserva</span></div>
+        </div>
+        <div class="table__row">
+          <div class="mono">2026-03-20</div>
+          <div>Evento Corporativo</div>
+          <div>Várzea Grande/MT</div>
+          <div><span class="tag tag--ok">Confirmado</span></div>
+        </div>
+      </div>
+
+      <div class="note">
+        Quer reservar uma data? <a href="#contato">Fale com a produção</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- Música -->
+  <section id="musica" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Música & Vídeos</h2>
+        <p>Ouça e assista. Troque os links pelos seus.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="panel">
+          <h3>Spotify</h3>
+          <p class="muted">Cole aqui o embed do seu artista/playlist.</p>
+          <div class="embed">
+            <!-- Exemplo: substitua pelo iframe do Spotify -->
+            <div class="embed__placeholder">
+              Cole aqui o iframe do Spotify (ou deixe vazio por enquanto).
             </div>
           </div>
-          <div class="music-links-container">
-            <h3>Escute agora:</h3>
-            <div class="music-links">
-              <a href="https://spotify.com" target="_blank" aria-label="Spotify"
-                ><i class="fab fa-spotify"></i
-              ></a>
-              <a
-                href="https://apple.com/music"
-                target="_blank"
-                aria-label="Apple Music"
-                ><i class="fab fa-apple"></i
-              ></a>
-              <a href="https://deezer.com" target="_blank" aria-label="Deezer"
-                ><i class="fab fa-deezer"></i
-              ></a>
-              <!-- Adicione mais ícones conforme necessário -->
-            </div>
+        </div>
+
+        <div class="panel">
+          <h3>YouTube</h3>
+          <p class="muted">Vídeo ao vivo, clipe ou apresentação.</p>
+          <div class="embed">
+            <!-- Exemplo: substitua pelo seu vídeo -->
+            <iframe
+              width="560" height="315"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        © 2024 Banda SU7. Todos os direitos reservados.
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria" class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <h2>Galeria</h2>
+        <p>Fotos de palco e bastidores. Troque pelos seus arquivos em <span class="mono">assets/img/</span>.</p>
       </div>
-    </footer>
 
-    <!-- Script JS -->
-    <script src="/js/all-scripts.js"></script>
-    <script>
-      const slides = document.querySelector(".carousel-slides");
-      const slideCount = document.querySelectorAll(".carousel-slide").length;
-      const thumbnails = document.querySelectorAll(".carousel-thumbnails img");
-      let currentIndex = 0;
+      <div class="gallery">
+        <img src="assets/img/g1.jpg" alt="Banda SU7 - foto 1" loading="lazy" />
+        <img src="assets/img/g2.jpg" alt="Banda SU7 - foto 2" loading="lazy" />
+        <img src="assets/img/g3.jpg" alt="Banda SU7 - foto 3" loading="lazy" />
+        <img src="assets/img/g4.jpg" alt="Banda SU7 - foto 4" loading="lazy" />
+        <img src="assets/img/g5.jpg" alt="Banda SU7 - foto 5" loading="lazy" />
+        <img src="assets/img/g6.jpg" alt="Banda SU7 - foto 6" loading="lazy" />
+      </div>
+    </div>
+  </section>
 
-      function showSlide(index) {
-        slides.style.transform = `translateX(-${index * 100}%)`;
-        thumbnails.forEach((thumbnail, i) => {
-          thumbnail.classList.toggle("active", i === index);
-        });
-      }
+  <!-- Contato -->
+  <section id="contato" class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Contato & Orçamentos</h2>
+        <p>Respondo rápido. Diga data, cidade, tipo de evento e duração do show.</p>
+      </div>
 
-      document.getElementById("next").addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % slideCount;
-        showSlide(currentIndex);
-      });
+      <div class="grid grid--2">
+        <div class="panel">
+          <h3>Fale direto</h3>
+          <div class="contacts">
+            <a class="contact" href="https://wa.me/5599999999999" target="_blank" rel="noreferrer">
+              <span class="contact__k">WhatsApp</span>
+              <span class="contact__v">(99) 99999-9999</span>
+            </a>
+            <a class="contact" href="mailto:contato@bandasu7.com.br">
+              <span class="contact__k">E-mail</span>
+              <span class="contact__v">contato@bandasu7.com.br</span>
+            </a>
+            <a class="contact" href="https://instagram.com/" target="_blank" rel="noreferrer">
+              <span class="contact__k">Instagram</span>
+              <span class="contact__v">@bandasu7</span>
+            </a>
+          </div>
 
-      document.getElementById("prev").addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-        showSlide(currentIndex);
-      });
+          <div class="spacer"></div>
+          <div class="mini">
+            <div class="mini__t">Rider técnico</div>
+            <div class="mini__p">Disponível mediante solicitação. Estrutura de som/luz sob demanda.</div>
+          </div>
+        </div>
 
-      thumbnails.forEach((thumbnail) => {
-        thumbnail.addEventListener("click", () => {
-          const index = parseInt(thumbnail.getAttribute("data-index"));
-          currentIndex = index;
-          showSlide(currentIndex);
-        });
-      });
+        <div class="panel">
+          <h3>Formulário</h3>
+          <form class="form" id="contactForm">
+            <label>
+              <span>Nome</span>
+              <input name="nome" placeholder="Seu nome" required />
+            </label>
 
-      showSlide(currentIndex);
-    </script>
-  </body>
+            <label>
+              <span>WhatsApp</span>
+              <input name="whats" placeholder="(99) 99999-9999" required />
+            </label>
+
+            <label>
+              <span>Data do evento</span>
+              <input name="data" type="date" required />
+            </label>
+
+            <label>
+              <span>Cidade</span>
+              <input name="cidade" placeholder="Cuiabá/MT" required />
+            </label>
+
+            <label class="full">
+              <span>Mensagem</span>
+              <textarea name="msg" rows="5" placeholder="Tipo de evento, horário, duração, local..." required></textarea>
+            </label>
+
+            <button class="btn btn--full" type="submit">Enviar no WhatsApp</button>
+            <p class="tiny">* O envio abre o WhatsApp com a mensagem pronta.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__row">
+      <div class="footer__left">
+        <div class="brand brand--footer">
+          <span class="brand__mark">SU7</span>
+          <span class="brand__name">Banda</span>
+        </div>
+        <div class="tiny">© <span id="year"></span> Banda SU7. Todos os direitos reservados.</div>
+      </div>
+
+      <div class="footer__right">
+        <a href="#home">Topo</a>
+        <a href="#shows">Agenda</a>
+        <a href="#contato">Contratar</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <a class="wa" href="https://wa.me/5599999999999" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
+    <span>WhatsApp</span>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
