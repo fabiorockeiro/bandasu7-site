@@ -1,0 +1,618 @@
+@charset "UTF-8";
+
+/* Resetando estilos padrões */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  color: #333;
+  margin-top: 60px; /* Compensando a barra de navegação fixa */
+  scroll-behavior: smooth; /* Scroll suave */
+}
+
+/* Estilo do Cabeçalho */
+.site-header {
+  background-color: #111; /* Fundo escuro */
+  color: #ffffff; /* Texto branco */
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed; /* Torna o cabeçalho fixo */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa toda a largura da página */
+  z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+  position: relative;
+}
+
+.header-logo img {
+  width: 150px; /* Ajuste o tamanho da logo conforme necessário */
+}
+
+.menu-toggle {
+  display: none; /* Oculta o menu hamburger por padrão */
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  background-color: #ffffff; /* Cor das barras do hamburger */
+  height: 3px;
+  width: 25px;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Menu de Navegação */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espaço entre os itens do menu e links */
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px; /* Espaço entre os itens do menu */
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #f39c12; /* Cor ao passar o mouse */
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espaço entre as seções de links */
+}
+
+.social-links,
+.music-links {
+  display: flex;
+  gap: 15px; /* Espaço entre os ícones e links */
+}
+
+.social-links a,
+.music-links a {
+  color: #ffffff; /* Cor dos ícones e links */
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove o sublinhado */
+  transition: color 0.3s;
+}
+
+.social-links a:hover,
+.music-links a:hover {
+  color: #f39c12; /* Cor ao passar o mouse */
+}
+
+.music-links a {
+  font-size: 1rem; /* Tamanho uniforme para todos os links */
+}
+
+.music-links i {
+  margin-right: 8px;
+}
+
+/* Menu Hamburger */
+@media (max-width: 768px) {
+  .navbar {
+    display: none; /* Oculta o menu de navegação em dispositivos móveis */
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Ajuste a posição do menu */
+    left: 0;
+    background-color: #111; /* Fundo do menu */
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .navbar.active {
+    display: flex; /* Mostra o menu quando o hamburger está ativo */
+  }
+
+  .header-links {
+    display: none; /* Oculta os links de redes sociais e música em dispositivos móveis */
+  }
+
+  .menu-toggle {
+    display: flex; /* Mostra o menu hamburger em dispositivos móveis */
+  }
+}
+
+/* Adiciona espaçamento superior ao conteúdo da página para compensar o cabeçalho fixo */
+body {
+  margin: 0;
+  padding-top: 80px; /* Ajuste este valor com base na altura do cabeçalho */
+}
+
+/* Seção Principal (Home) */
+.home-section {
+  height: 100vh;
+  background: url("banner.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.home-section .banner {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-section h1 {
+  font-size: 3rem;
+}
+
+.home-section button {
+  background-color: #f39c12;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.home-section button:hover {
+  background-color: #e67e22;
+}
+
+/* Estilo da Seção História da Banda */
+.historia {
+  padding: 50px 10px; /* Espaçamento ao redor da seção */
+  background-color: #f4f4f4; /* Cor de fundo clara para a seção */
+}
+
+.historia-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px; /* Limita a largura máxima */
+  margin: 0 auto; /* Centraliza a seção */
+  flex-direction: row-reverse; /* Faz com que a foto fique do lado direito e o texto do lado esquerdo */
+  gap: 20px; /* Espaço entre a imagem e o texto */
+}
+
+.historia-foto {
+  flex: 1; /* Ocupa o espaço disponível */
+}
+
+.historia-foto img {
+  width: 100%; /* Faz a imagem ocupar toda a largura disponível */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 8px; /* Adiciona bordas arredondadas à imagem */
+}
+
+.historia-texto {
+  flex: 1; /* Ocupa o espaço disponível */
+}
+
+.historia-texto h2 {
+  margin-top: 0; /* Remove a margem superior */
+  font-size: 2rem; /* Tamanho da fonte do título */
+}
+
+.historia-texto p {
+  font-size: 1rem; /* Tamanho da fonte do texto */
+  line-height: 1.6; /* Espaço entre linhas do texto */
+  color: #333; /* Cor do texto */
+}
+
+.btn-detalhes {
+  display: inline-block;
+  margin-top: 20px; /* Espaço acima do botão */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  background-color: #f39c12; /* Cor de fundo do botão */
+  color: #ffffff; /* Cor do texto do botão */
+  text-decoration: none; /* Remove o sublinhado do texto do botão */
+  font-size: 1rem; /* Tamanho da fonte do botão */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave de cor */
+}
+
+.btn-detalhes:hover {
+  background-color: #e67e22; /* Cor do botão ao passar o mouse */
+}
+
+.btn-detalhes {
+  display: inline-block;
+  margin-top: 20px; /* Espaço acima do botão */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  background-color: #f39c12; /* Cor de fundo do botão */
+  color: #ffffff; /* Cor do texto do botão */
+  text-decoration: none; /* Remove o sublinhado do texto do botão */
+  font-size: 1rem; /* Tamanho da fonte do botão */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave de cor */
+}
+
+.btn-detalhes:hover {
+  background-color: #e67e22; /* Cor do botão ao passar o mouse */
+}
+
+.carousel-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.carousel-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.carousel {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo da Seção de Agenda */
+.agenda-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.agenda-section h2 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.event-item:hover {
+  transform: scale(1.05);
+}
+
+.event-date {
+  text-align: center;
+  margin-right: 20px;
+}
+
+.event-day {
+  font-size: 2rem;
+  color: #f39c12;
+  display: block;
+}
+
+.event-month {
+  font-size: 1rem;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.event-details {
+  text-align: left;
+}
+
+.event-details h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.event-details p {
+  margin: 5px 0;
+  color: #777;
+}
+
+.btn-details {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px px;
+  background-color: #f39c12;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-details:hover {
+  background-color: #e67e22;
+}
+
+.btn-all-events {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f39c12;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-all-events:hover {
+  background-color: #e67e22;
+}
+
+/* Seção de Contato */
+.contato-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f4f4f4;
+  animation: fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.contato-section form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contato-section input,
+.contato-section textarea {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.contato-section button {
+  background-color: #f39c12;
+  border: none;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.contato-section button:hover {
+  background-color: #e67e22;
+}
+
+/* Estilo do Rodapé */
+.custom-footer {
+  background-color: #111; /* Fundo escuro */
+  color: #ffffff; /* Texto branco */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center; /* Alinha os itens verticalmente no centro */
+}
+
+.footer-section {
+  flex: 2;
+  text-align: center;
+  margin: 0% 50px;
+}
+
+.logo-and-description {
+  text-align: left;
+}
+
+.footer-logo {
+  width: 150px; /* Ajuste o tamanho da logo conforme necessário */
+}
+
+.contact-info {
+  flex: 2;
+  text-align: center;
+}
+
+.contact-info h3 {
+  font-size: 1rem;
+  color: #f39c12;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  color: #ddd;
+}
+
+.contact-info a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.social-and-music {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-links-container,
+.music-links-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.social-links-container h3,
+.music-links-container h3 {
+  font-size: 1rem;
+  color: #f39c12;
+  margin-bottom: 10px;
+}
+
+.social-links,
+.music-links {
+  display: flex;
+  gap: 15px; /* Espaço entre os ícones */
+  justify-content: flex-end; /* Alinha os ícones à direita */
+}
+
+.social-links a,
+.music-links a {
+  color: #ffffff; /* Cor dos ícones e links */
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove o sublinhado */
+  transition: color 0.3s;
+}
+
+.social-links a:hover,
+.music-links a:hover {
+  color: #f39c12; /* Cor ao passar o mouse */
+}
+
+.music-links a {
+  font-size: 1.5rem; /* Tamanho uniforme para todos os links */
+}
+
+/* CSS para transições suaves */
+.fade-out {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* Suavidade da transição */
+}
+
+.fade-out.fade {
+  opacity: 0;
+}
+
+.date-all-001 {
+  background-color: #f9f9f9;
+
+  padding: 3px 5px;
+  text-align: left;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.date-all-002 {
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  text-align: left;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.date-all-003 {
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  text-align: left;
+  animation: fadeIn 3s ease-in-out;
+}

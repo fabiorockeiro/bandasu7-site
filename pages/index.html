@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banda SU7 - Site Oficial</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/js/all-scripts.js" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Seção da Galeria de Fotos */
+      .gallery-section {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+      }
+
+      .gallery-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .carousel-container {
+        position: relative;
+        max-width: 80%;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .carousel-slides {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 100%;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        display: flex;
+        justify-content: center; /* Centra a imagem horizontalmente */
+        align-items: center; /* Centra a imagem verticalmente */
+      }
+
+      .carousel-slide img {
+        max-width: 100%;
+        max-height: 500px; /* Limita a altura máxima da imagem */
+        width: auto;
+        height: auto;
+        object-fit: contain; /* Mantém a proporção da imagem */
+        border-radius: 10px;
+      }
+
+      .carousel-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+
+      .carousel-controls button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .carousel-thumbnails {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .carousel-thumbnails img {
+        width: 80px;
+        height: 60px;
+        cursor: pointer;
+        margin: 0 5px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+      }
+
+      .carousel-thumbnails img.active {
+        border-color: #f39c12;
+      }
+
+      /* Estilos Responsivos */
+      @media (max-width: 768px) {
+        .carousel-thumbnails img {
+          width: 60px;
+          height: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Cabeçalho -->
+    <header class="site-header">
+      <div class="header-content">
+        <!-- Logo da Banda -->
+        <div class="header-logo">
+          <img src="logo-da-banda.png" alt="Logo da Banda" />
+        </div>
+
+        <!-- Menu Hamburger -->
+        <div class="menu-toggle" id="menu-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <!-- Menu de Navegação -->
+        <nav class="navbar" id="navbar">
+          <div class="header-links">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="music-links">
+              <a href="#"><i class="fab fa-spotify"></i></a>
+              <a href="#"><i class="fab fa-apple"></i></a>
+              <a href="#"><i class="fab fa-deezer"></i></a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Seção Principal (Home) -->
+    <section id="home" class="home-section">
+      <div class="banner">
+        <h1>Bem-vindo ao Site Oficial da Banda SU7</h1>
+        <button onclick="scrollToSection('contato')">
+          Ouça nossas músicas
+        </button>
+      </div>
+    </section>
+
+    <!-- Seção História da Banda -->
+    <section class="historia">
+      <div class="historia-content">
+        <div class="historia-texto">
+          <h2>História da Banda</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque eos
+            nesciunt, veritatis iste enim distinctio omnis reiciendis magnam
+            laborum nisi, vel error sapiente earum recusandae harum iure
+            praesentium voluptates cumque architecto, repudiandae ut! Cupiditate
+            inventore cum quod ratione. Consectetur vel, eum temporibus totam
+            quisquam adipisci fugit. Quo quam ratione perferendis totam
+            excepturi, ipsum voluptates nihil corporis amet ipsa accusantium
+            tempora!
+          </p>
+          <a href="/pages/history.html" class="btn-detalhes">Leia Mais</a>
+        </div>
+        <div class="historia-foto">
+          <img src="foto-banda.jpg" alt="Foto da Banda" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section class="gallery-section">
+      <h2>Galeria de Fotos</h2>
+      <div class="carousel-container">
+        <div class="carousel-slides">
+          <div class="carousel-slide">
+            <img src="/img/img-001.jpg" alt="Imagem 1" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/img/img-002.jpg" alt="Imagem 2" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/img/img-003.jpg" alt="Imagem 3" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/img/img-004.jpg" alt="Imagem 3" />
+          </div>
+          <!-- Adicione mais slides conforme necessário -->
+        </div>
+        <div class="carousel-controls">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
+        </div>
+        <div class="carousel-thumbnails">
+          <img
+            src="/img/img-001.jpg"
+            alt="Thumbnail 1"
+            data-index="0"
+            class="active"
+          />
+          <img src="/img/img-002.jpg" alt="Thumbnail 2" data-index="1" />
+          <img src="/img/img-003.jpg" alt="Thumbnail 3" data-index="2" />
+          <img src="/img/img-004.jpg" alt="Thumbnail 3" data-index="3" />
+          <!-- Adicione mais miniaturas conforme necessário -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Agenda -->
+    <section id="agenda" class="agenda-section">
+      <h2>AGENDA</h2>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">
+            <span class="event-day">15</span>
+            <span class="event-month">Out</span>
+          </div>
+          <div class="event-details">
+            <h3>IGREJA BATISTA Lorem ipsum dolor sit amet.</h3>
+            <p>Local: Espaço das Américas, Cuiabá/MT</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <div class="event-date">
+            <span class="event-day">15</span>
+            <span class="event-month">Out</span>
+          </div>
+          <div class="event-details">
+            <h3>IGREJA BATISTA Lorem ipsum dolor sit amet.</h3>
+            <p>Local: Espaço das Américas, Cuiabá/MT</p>
+          </div>
+        </div>
+        <!-- Adicione mais eventos conforme necessário -->
+      </div>
+      <a href="/pages/agenda.html" class="btn-all-events"
+        >Ver Agenda Completa</a
+      >
+    </section>
+
+    <!-- Seção de Contato -->
+    <section id="contato" class="contato-section">
+      <h2>Contato</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Seu Nome" required />
+        <input type="email" id="email" placeholder="Seu Email" required />
+        <textarea id="message" placeholder="Sua Mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="custom-footer">
+      <div class="footer-top">
+        <!-- Lado Esquerdo: Logo da Banda -->
+        <div class="footer-section logo-and-description">
+          <img src="logo.png" alt="Logo da Banda" class="footer-logo" />
+        </div>
+
+        <!-- Centro: Informações de Contato -->
+        <div class="footer-section contact-info">
+          <h3>Contato para Shows e Eventos</h3>
+          <p>Email: <a href="mailto:contato@banda.com">contato@banda.com</a></p>
+          <p>Telefone: <a href="tel:+5511999999999">+55 11 99999-9999</a></p>
+          <p>
+            WhatsApp:
+            <a href="https://wa.me/5511999999999">+55 11 99999-9999</a>
+          </p>
+        </div>
+
+        <!-- Lado Direito: Redes Sociais e Apps de Música -->
+        <div class="footer-section social-and-music">
+          <div class="social-links-container">
+            <h3>Siga-nos nas redes sociais</h3>
+            <div class="social-links">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <!-- Adicione mais ícones conforme necessário -->
+            </div>
+          </div>
+          <div class="music-links-container">
+            <h3>Escute agora:</h3>
+            <div class="music-links">
+              <a href="https://spotify.com" target="_blank" aria-label="Spotify"
+                ><i class="fab fa-spotify"></i
+              ></a>
+              <a
+                href="https://apple.com/music"
+                target="_blank"
+                aria-label="Apple Music"
+                ><i class="fab fa-apple"></i
+              ></a>
+              <a href="https://deezer.com" target="_blank" aria-label="Deezer"
+                ><i class="fab fa-deezer"></i
+              ></a>
+              <!-- Adicione mais ícones conforme necessário -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2024 Banda SU7. Todos os direitos reservados.
+      </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="/js/all-scripts.js"></script>
+    <script>
+      const slides = document.querySelector(".carousel-slides");
+      const slideCount = document.querySelectorAll(".carousel-slide").length;
+      const thumbnails = document.querySelectorAll(".carousel-thumbnails img");
+      let currentIndex = 0;
+
+      function showSlide(index) {
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        thumbnails.forEach((thumbnail, i) => {
+          thumbnail.classList.toggle("active", i === index);
+        });
+      }
+
+      document.getElementById("next").addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        showSlide(currentIndex);
+      });
+
+      document.getElementById("prev").addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        showSlide(currentIndex);
+      });
+
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener("click", () => {
+          const index = parseInt(thumbnail.getAttribute("data-index"));
+          currentIndex = index;
+          showSlide(currentIndex);
+        });
+      });
+
+      showSlide(currentIndex);
+    </script>
+  </body>
+</html>
