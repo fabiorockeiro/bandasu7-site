@@ -66,7 +66,7 @@
 <section class="section section-media" id="musicas" aria-label="Sobre, músicas e vídeos">
   <!-- Background: vídeo em loop (com fallback em background.png via CSS) -->
   <video class="section-media__bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
-    <source src="VideoLoop.mp4" type="video/mp4" />
+    <source src="assets/videos/VideoLoop.mp4" type="video/mp4" />
   </video>
   <div class="section-media__overlay" aria-hidden="true"></div>
 
@@ -89,9 +89,7 @@
           <div class="media-verse__ref">GÁLATAS 3:28</div>
           <div class="media-verse__text">“...porque todos vós sois um em Cristo Jesus.”</div>
         </div>
-      </div>
-
-      <aside class="media-podcast" aria-label="Podcast Falando de Áudio">
+        <aside class="media-podcast" aria-label="Podcast Falando de Áudio">
         <div class="kicker">PODCAST</div>
         <h3 class="podcast-title">Falando de Áudio</h3>
         <p class="podcast-text">Episódio com a trajetória da SU7 e músicas autorais.</p>
@@ -106,6 +104,9 @@
           <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=QveKPBhZJVs" target="_blank" rel="noreferrer noopener">YouTube</a>
         </div>
       </aside>
+      </div>
+
+      
     </div>
 
     <!-- MÚSICAS + AMOSTRA -->
@@ -115,7 +116,6 @@
 
         <div class="player-stack">
           <div class="player-card" aria-label="No Centro da Tua Vontade (Spotify)">
-            <div class="player-label">NO CENTRO DA TUA VONTADE</div>
             <div class="player-embed player-embed--spotify">
               <iframe data-testid="embed-iframe" style="border-radius:12px"
                 src="https://open.spotify.com/embed/track/4UncTxzbZF5fHT3PKjRLjS?utm_source=generator"
@@ -127,7 +127,6 @@
           </div>
 
           <div class="player-card" aria-label="Jesus é o Caminho (Spotify)">
-            <div class="player-label">JESUS É O CAMINHO</div>
             <div class="player-embed player-embed--spotify">
               <iframe data-testid="embed-iframe" style="border-radius:12px"
                 src="https://open.spotify.com/embed/track/2IQWQqZ9ww4BE6eoZzP67F?utm_source=generator"
@@ -139,7 +138,6 @@
           </div>
 
           <div class="player-card" aria-label="Filho de Davi (YouTube)">
-            <div class="player-label">FILHO DE DAVI</div>
             <div class="player-embed player-embed--youtube">
               <iframe
                 style="border-radius:12px"
@@ -162,33 +160,12 @@
 
         <div class="reel-wrap">
           <video class="reel" controls playsinline preload="metadata">
-            <source src="video-001.mp4" type="video/mp4" />
+            <source src="assets/videos/video-001.mp4" type="video/mp4" />
             Seu navegador não suporta vídeo em HTML5.
           </video>
         </div>
 
         <p class="reel-text">Spoiler de um evento — solo de guitarra.</p>
-      </article>
-    </div>
-
-    <!-- LIVE / PODCAST (player no site) -->
-    <div class="media-live" id="live" aria-label="Player do Podcast Falando de Áudio">
-      <div class="kicker">LIVE</div>
-
-      <article class="media-card" aria-label="Podcast Falando de Áudio — episódio com a SU7">
-        <div class="embed embed--video">
-          <iframe
-            src="https://www.youtube.com/embed/QveKPBhZJVs?si=gbGgKdCtOTk-e9Cb"
-            title="PODCAST FALANDO DE ÁUDIO — Banda SU7"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-        </div>
-        <div class="media-meta">
-          <h3>Falando de Áudio</h3>
-          <p>Trajetória da SU7 + músicas autorais.</p>
-        </div>
       </article>
     </div>
   </div>
