@@ -90,7 +90,6 @@
     { src: "assets/img/Fabio-001.jpg", cap: "Fábio • Guitarra" },
     { src: "assets/img/Fabio-002.jpg", cap: "Fábio • Guitarra" },
     { src: "assets/img/Fabio-003.jpg", cap: "Fábio • Guitarra" },
-    { src: "assets/img/Fabio-004.jpg", cap: "Fábio • Guitarra" },
 
     { src: "assets/img/img-001.jpg", cap: "SU7" },
     { src: "assets/img/img-002.jpg", cap: "SU7" },
