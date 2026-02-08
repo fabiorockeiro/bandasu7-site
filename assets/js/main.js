@@ -204,3 +204,177 @@
   }
 })();
 
+// =========================
+// AGENDAS: carrossel + lightbox
+// =========================
+(function initAgendasCarousel(){
+  const track = document.getElementById("agendaTrack");
+  const dotsWrap = document.getElementById("agendaDots");
+  if(!track || !dotsWrap) return;
+
+  // Ajuste aqui se você mudar a quantidade inicial
+  const MAX = 5;
+
+  // Onde suas imagens estão:
+  // 1) tenta assets/img/Agenda-00X.png
+  // 2) fallback: ./Agenda-00X.png
+  const candidates = (i) => ([
+    `assets/img/Agenda-${String(i).padStart(3, "0")}.png`,
+    `Agenda-${String(i).padStart(3, "0")}.png`
+  ]);
+
+  let slides = [];
+  let index = 0;
+  let timer = null;
+  const AUTOPLAY_MS = 3500;
+
+  function setTransform(){
+    track.style.transform = `translateX(${-index * 100}%)`;
+    [...dotsWrap.children].forEach((d, di) => d.classList.toggle("is-active", di === index));
+  }
+
+  function next(){
+    if(slides.length <= 1) return;
+    index = (index + 1) % slides.length;
+    setTransform();
+  }
+
+  function prev(){
+    if(slides.length <= 1) return;
+    index = (index - 1 + slides.length) % slides.length;
+    setTransform();
+  }
+
+  function start(){
+    stop();
+    if(slides.length <= 1) return;
+    timer = setInterval(next, AUTOPLAY_MS);
+  }
+
+  function stop(){
+    if(timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function openLightbox(src){
+    // Se já existir um lightbox no seu site, tenta reaproveitar.
+    // Caso não exista, cria um simples.
+    let lb = document.querySelector(".lightbox");
+    let lbImg = lb ? lb.querySelector("img") : null;
+
+    if(!lb){
+      lb = document.createElement("div");
+      lb.className = "lightbox";
+      lb.innerHTML = `<div class="lightbox__backdrop"></div><img alt="Agenda" />`;
+      document.body.appendChild(lb);
+      lbImg = lb.querySelector("img");
+
+      lb.addEventListener("click", () => lb.classList.remove("is-open"));
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") lb.classList.remove("is-open");
+      });
+    }
+
+    lbImg.src = src;
+    lb.classList.add("is-open");
+  }
+
+  // styles do lightbox simples (se você não tiver)
+  (function ensureLightboxCSS(){
+    if(document.getElementById("agendaLightboxCSS")) return;
+    const s = document.createElement("style");
+    s.id = "agendaLightboxCSS";
+    s.textContent = `
+      .lightbox{
+        position: fixed; inset: 0; z-index: 9999;
+        display: none; place-items: center;
+      }
+      .lightbox.is-open{ display: grid; }
+      .lightbox__backdrop{
+        position:absolute; inset:0;
+        background: rgba(0,0,0,.82);
+      }
+      .lightbox img{
+        position: relative;
+        max-width: min(92vw, 1100px);
+        max-height: 86vh;
+        border-radius: 14px;
+        box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      }
+    `;
+    document.head.appendChild(s);
+  })();
+
+  function addSlide(resolvedSrc){
+    const slide = document.createElement("div");
+    slide.className = "agenda-slide";
+    slide.innerHTML = `<img src="${resolvedSrc}" alt="Agenda" loading="lazy">`;
+    const img = slide.querySelector("img");
+    img.addEventListener("click", () => openLightbox(resolvedSrc));
+    track.appendChild(slide);
+    slides.push(resolvedSrc);
+  }
+
+  function addDot(){
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "agenda-dot";
+    dot.addEventListener("click", () => {
+      index = [...dotsWrap.children].indexOf(dot);
+      setTransform();
+      start();
+    });
+    dotsWrap.appendChild(dot);
+  }
+
+  async function resolveSrc(i){
+    const opts = candidates(i);
+    // testa qual existe carregando em memória
+    for(const src of opts){
+      const ok = await new Promise((res) => {
+        const img = new Image();
+        img.onload = () => res(true);
+        img.onerror = () => res(false);
+        img.src = src;
+      });
+      if(ok) return src;
+    }
+    return null;
+  }
+
+  (async function build(){
+    for(let i=1;i<=MAX;i++){
+      const src = await resolveSrc(i);
+      if(src){
+        addSlide(src);
+        addDot();
+      }
+    }
+
+    // navegação
+    const prevBtn = document.querySelector(".agenda-nav--prev");
+    const nextBtn = document.querySelector(".agenda-nav--next");
+    if(prevBtn) prevBtn.addEventListener("click", () => { prev(); start(); });
+    if(nextBtn) nextBtn.addEventListener("click", () => { next(); start(); });
+
+    // hover pausa autoplay
+    const carousel = document.querySelector(".agenda-carousel");
+    if(carousel){
+      carousel.addEventListener("mouseenter", stop);
+      carousel.addEventListener("mouseleave", start);
+      carousel.addEventListener("focusin", stop);
+      carousel.addEventListener("focusout", start);
+    }
+
+    // se não encontrou nenhuma imagem, esconde o bloco de dots e track
+    if(slides.length === 0){
+      track.innerHTML = `<div style="padding:16px;opacity:.8">Sem imagens de agenda ainda.</div>`;
+      dotsWrap.style.display = "none";
+      return;
+    }
+
+    index = 0;
+    setTransform();
+    start();
+  })();
+})();

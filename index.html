@@ -26,10 +26,11 @@
 
       <nav class="nav" aria-label="Navegação principal" data-nav>
         <a href="#home" class="nav-link is-active">Home</a>
-        <a href="#musicas" class="nav-link">Músicas</a>
-        <a href="#live" class="nav-link">Live</a>
-        <a href="#galeria" class="nav-link">Galeria</a>
+        <a href="#sobre" class="nav-link">Agendas</a>
         <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#live" class="nav-link">Live</a>
+        <a href="#musicas" class="nav-link">Músicas</a>
+        <a href="#galeria" class="nav-link">Galeria</a>
         <a href="#contato" class="nav-link">Contato</a>
       </nav>
 
@@ -62,6 +63,34 @@
       <img class="hero-img" src="assets/img/Hero.png" alt="Banda SU7 — banner" />
     </section>
 
+    <section id="agendas" class="section agendas">
+  <div class="container agendas-grid">
+    <div class="agendas-left">
+      <h2 class="section-title">Agendas</h2>
+      <p class="section-subtitle">
+        Datas, eventos e registros de apresentações anteriores.
+      </p>
+    </div>
+
+    <div class="agendas-right">
+      <div class="agenda-carousel" aria-label="Carrossel de agendas">
+        <button class="agenda-nav agenda-nav--prev" type="button" aria-label="Imagem anterior">‹</button>
+
+        <div class="agenda-viewport">
+          <div class="agenda-track" id="agendaTrack">
+            <!-- preenchido via JS automaticamente -->
+          </div>
+        </div>
+
+        <button class="agenda-nav agenda-nav--next" type="button" aria-label="Próxima imagem">›</button>
+      </div>
+
+      <div class="agenda-dots" id="agendaDots" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+
  <!-- MÚSICAS + LIVE (layout 2 colunas) -->
 <section class="section section-media" id="musicas" aria-label="Sobre, músicas e vídeos">
   <!-- Background: vídeo em loop (com fallback em background.png via CSS) -->
@@ -79,7 +108,7 @@
 
         <p class="media-text">
           A Banda SU7, cujo nome significa <strong>&quot;Somos Um em Cristo&quot;</strong>, reflete uma identidade espiritual profunda, com o número <strong>7</strong>
-          simbolizando perfeição divina e unidade em Cristo. Fundada em 2015, a banda combina elementos de rock e pop rock com o propósito de adorar e servir ao Senhor Jesus.
+          simbolizando perfeição divina e unidade em Cristo. Fundada em 2015, a banda combina elementos de rock com o propósito de adorar e servir ao Senhor Jesus.
           Além de difundir sua mensagem de fé e amor, a SU7 transcende as fronteiras da igreja local para alcançar corações necessitados da esperança e salvação encontradas em Cristo,
           atingindo diversos públicos. Nossa missão é transmitir a palavra de Deus e criar experiências edificantes através da música gospel, sendo um instrumento de transformação e
           redenção de vidas. Nossa abordagem musical é autêntica e inspiradora, promovendo uma adoração sincera baseada nos princípios bíblicos e no compromisso com a verdade.
@@ -253,24 +282,29 @@
         <h2>Fale com a SU7</h2>
         <p>Agendas, Entrevistas, Podcasts, Participações especiais entre outros.</p>
 
-        <div class="contact-actions">
-  <a class="btn btn-primary btn-xl"
-     href="https://wa.me/556584722445"
-     target="_blank"
-     rel="noreferrer noopener">
-    Chamar no WhatsApp
+        <div class="su7-contact">
+  <a class="su7-qr" href="https://wa.me/556584722445" target="_blank" rel="noreferrer noopener" aria-label="Abrir WhatsApp da SU7">
+    <img
+      class="su7-qr__img"
+      src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&data=https://wa.me/556584722445"
+      alt="QR Code do WhatsApp da Banda SU7"
+      loading="lazy" />
   </a>
 
-  <img
-    class="contact-qr"
-    src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/556584722445"
-    alt="QR Code do WhatsApp da Banda SU7"
-    loading="lazy" />
+  <div class="su7-phone">
+    <a class="contact-link" href="tel:+556584722445">+55 65 8472-2445</a>
+  </div>
+
+  <div class="su7-actions">
+    <a class="btn btn-primary btn-xl btn-block"
+       href="https://wa.me/556584722445"
+       target="_blank"
+       rel="noreferrer noopener">
+      Chamar no WhatsApp
+    </a>
+  </div>
 </div>
 
-<div class="contact-meta-line">
-  <a class="contact-link" href="tel:+556584722445">+55 65 8472-2445</a>
-</div>
 
       </div>
 
