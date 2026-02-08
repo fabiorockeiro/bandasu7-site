@@ -1,84 +1,73 @@
-(() => {
-  const $ = (q) => document.querySelector(q);
+(function () {
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 
-  // Ano automático
-  const yearEl = $("#year");
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  const hamburger = document.querySelector("[data-hamburger]");
+  const nav = document.querySelector("[data-nav]");
 
-  // Menu mobile
-  const menuBtn = $("#menuBtn");
-  const mobileMenu = $("#mobileMenu");
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener("click", () => {
-      const isOpen = !mobileMenu.hasAttribute("hidden");
-      if (isOpen) {
-        mobileMenu.setAttribute("hidden", "");
-        menuBtn.setAttribute("aria-expanded", "false");
-      } else {
-        mobileMenu.removeAttribute("hidden");
-        menuBtn.setAttribute("aria-expanded", "true");
-      }
-    });
+  function setExpanded(isOpen) {
+    if (!hamburger) return;
+    hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
 
-    // Fecha ao clicar em links
-    mobileMenu.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => {
-        mobileMenu.setAttribute("hidden", "");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
+  function closeMenu() {
+    document.body.classList.remove("menu-open");
+    setExpanded(false);
+  }
+
+  function toggleMenu() {
+    const isOpen = document.body.classList.toggle("menu-open");
+    setExpanded(isOpen);
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener("click", toggleMenu);
+  }
+
+  // Fecha menu ao clicar num link (mobile)
+  if (nav) {
+    nav.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (!a) return;
+      closeMenu();
     });
   }
 
-  // Copiar presskit (troque pelo seu link real)
-  const presskitUrl = "https://seusite.com/presskit";
-  const copyBtn = $("#copyPresskit");
-  const copyMsg = $("#copyMsg");
+  // Marcar item ativo conforme scroll
+  const links = Array.from(document.querySelectorAll(".nav-link"))
+    .filter(a => a.getAttribute("href") && a.getAttribute("href").startsWith("#"));
 
-  if (copyBtn) {
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(presskitUrl);
-        if (copyMsg) copyMsg.textContent = "Link do presskit copiado!";
-      } catch (e) {
-        if (copyMsg) copyMsg.textContent = "Não foi possível copiar automaticamente. Copie manualmente: " + presskitUrl;
-      }
-      setTimeout(() => { if (copyMsg) copyMsg.textContent = ""; }, 3500);
+  const targets = links
+    .map(a => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      links.forEach(l => l.classList.remove("is-active"));
+      const id = "#" + entry.target.id;
+      const active = links.find(l => l.getAttribute("href") === id);
+      if (active) active.classList.add("is-active");
     });
-  }
+  }, { root: null, threshold: 0.6 });
 
-  // Formulário: por padrão abre WhatsApp com a mensagem (simples e funciona em static hosting)
-  const form = $("#contactForm");
-  const formMsg = $("#formMsg");
+  targets.forEach(t => obs.observe(t));
 
+  // Fake submit (você liga em backend depois)
+  const form = document.getElementById("contactForm");
   if (form) {
-    form.addEventListener("submit", (ev) => {
-      ev.preventDefault();
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      console.log("Contato:", data);
 
-      const data = new FormData(form);
-      const nome = (data.get("nome") || "").toString().trim();
-      const whatsapp = (data.get("whatsapp") || "").toString().trim();
-      const email = (data.get("email") || "").toString().trim();
-      const cidade = (data.get("cidade") || "").toString().trim();
-      const mensagem = (data.get("mensagem") || "").toString().trim();
-
-      const text =
-`Olá! Quero levar a banda para a minha cidade.
-Nome: ${nome}
-WhatsApp: ${whatsapp}
-E-mail: ${email}
-Cidade/UF: ${cidade}
-Mensagem: ${mensagem || "(sem mensagem)"}
-`;
-
-      // Troque pelo WhatsApp da produção (DDI+DDD+numero, só dígitos)
-      const phone = "5565999999999";
-
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank", "noopener");
-
-      if (formMsg) formMsg.textContent = "Abrindo WhatsApp com sua solicitação…";
+      alert("Mensagem registrada! (Ligue esse formulário em um serviço tipo Formspree/Netlify depois.)");
       form.reset();
-      setTimeout(() => { if (formMsg) formMsg.textContent = ""; }, 3500);
     });
   }
+
+  // Fecha menu ao apertar ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 })();
