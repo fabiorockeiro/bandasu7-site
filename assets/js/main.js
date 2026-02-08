@@ -13,10 +13,18 @@
   function closeMenu() {
     document.body.classList.remove("menu-open");
     setExpanded(false);
+    // Devolve foco para o botão do menu (acessibilidade)
+    if (hamburger) hamburger.focus();
   }
   function toggleMenu() {
     const isOpen = document.body.classList.toggle("menu-open");
     setExpanded(isOpen);
+
+    // Move foco para o primeiro item do menu quando abrir (acessibilidade)
+    if (isOpen && nav) {
+      const first = nav.querySelector("a");
+      if (first) setTimeout(() => first.focus(), 0);
+    }
   }
 
   if (hamburger) hamburger.addEventListener("click", toggleMenu);
@@ -24,6 +32,12 @@
     const a = e.target.closest("a");
     if (!a) return;
     closeMenu();
+  });
+  document.addEventListener("click", (e) => {
+    if (!document.body.classList.contains("menu-open")) return;
+    const inNav = nav && nav.contains(e.target);
+    const inBtn = hamburger && hamburger.contains(e.target);
+    if (!inNav && !inBtn) closeMenu();
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
