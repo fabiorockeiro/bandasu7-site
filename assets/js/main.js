@@ -220,7 +220,6 @@
   // 2) fallback: ./Agenda-00X.png
   const candidates = (i) => ([
     `assets/img/agendas/Agenda-${String(i).padStart(3, "0")}.png`,
-    `Agenda-${String(i).padStart(3, "0")}.png`
   ]);
 
   let slides = [];
