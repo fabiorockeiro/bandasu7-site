@@ -562,7 +562,6 @@ body.menu-open .nav{
 
 /* Layout: topo (sobre + podcast) */
 .media-top{
-  display:grid;
   grid-template-columns: 1.35fr .65fr;
   gap: 16px;
   align-items: start;
@@ -581,7 +580,6 @@ body.menu-open .nav{
 .media-podcast,
 .media-players,
 .media-reel{
-  background: rgba(0,0,0,.82);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: var(--radius2);
   box-shadow: var(--shadow);
@@ -697,6 +695,8 @@ body.menu-open .nav{
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.35);
+      height: 409px;
+  
 }
 .reel-text{margin: 12px 0 0; color: var(--muted); line-height:1.7}
 
@@ -869,4 +869,11 @@ body.menu-open .nav{
 .partner-sub{
   color: var(--muted);
   margin-top: 4px;
+}
+.embed--youtube iframe{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 12px;
+  border: 0;
 }
