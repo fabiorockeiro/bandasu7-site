@@ -999,7 +999,7 @@ body.menu-open .nav{
 
 @media (min-width: 980px){
   .su7-qr__img{
-    width: 240px;           /* tamanho bom no desktop */
+    width: 150px;           /* tamanho bom no desktop */
   }
 }
 
@@ -1015,3 +1015,70 @@ body.menu-open .nav{
 
 /* se você não tiver isso, ajuda o botão a ocupar largura */
 .btn-block{ width: 100%; }
+
+
+/* =========================
+   AGENDAS (dentro da sessão MEDIA)
+========================= */
+.media-agendas{
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.media-agendas__left,
+.media-agendas__right{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  background: rgba(0,0,0,.22);
+}
+
+.agenda-list{
+  margin-top: 10px;
+  display: grid;
+  gap: 12px;
+}
+
+.agenda-item{
+  display: grid;
+  gap: 4px;
+}
+
+.agenda-date{
+  font-weight: 1000;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .95;
+}
+
+.agenda-title{
+  font-weight: 1000;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.agenda-loc{
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.agenda-divider{
+  height: 1px;
+  background: rgba(255,255,255,.55);
+  opacity: .45;
+  border-radius: 999px;
+}
+
+@media (max-width: 980px){
+  .media-agendas{
+    grid-template-columns: 1fr;
+  }
+}
