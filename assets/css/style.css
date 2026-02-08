@@ -492,3 +492,128 @@ body.menu-open .nav{
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important; scroll-behavior:auto !important}
 }
+/* ===== ABOUT (Sobre) com background + box preta + imagem ===== */
+.about{
+  position: relative;
+  width: 100%;
+  padding: 84px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: #000; /* fallback */
+}
+
+.about__bg{
+  position:absolute;
+  inset:0;
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.05);
+  transform: scale(1.02);
+  z-index: 0;
+}
+
+/* um “fade” sutil para garantir leitura, sem parecer overlay pesado */
+.about::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.35) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.about__inner{
+  position: relative;
+  z-index: 2;
+  display:flex;
+  align-items: stretch;
+  gap: 18px;
+}
+
+/* ESQUERDA: caixa preta 100% */
+.about__content{
+  flex: 1 1 640px;
+  background: rgba(0,0,0,.92);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.about__title{
+  margin:0 0 10px;
+  font-size: 30px;
+  letter-spacing:-.01em;
+}
+
+.about__text{
+  margin: 0 0 12px;
+  color: rgba(255,255,255,.80);
+  line-height: 1.75;
+}
+
+.about__verse{
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,178,255,.26);
+  background: rgba(0,178,255,.10);
+}
+
+.about__verseTitle{
+  font-weight: 1000;
+  letter-spacing:.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity:.95;
+}
+
+.about__verseText{
+  margin-top: 8px;
+  color: rgba(255,255,255,.88);
+  line-height: 1.7;
+}
+
+.about__ctaRow{
+  margin-top: 14px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* DIREITA: imagem quadrada “banda.png” */
+.about__art{
+  flex: 0 1 420px; /* flexível */
+  display:flex;
+  align-items: stretch;
+}
+
+.about__art img{
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;   /* garante quadrado */
+  object-fit: cover;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  background: rgba(0,0,0,.35);
+}
+
+/* Responsivo */
+@media (max-width: 980px){
+  .about__inner{
+    flex-direction: column;
+  }
+  .about__art{
+    flex: 0 1 auto;
+  }
+  .about__content{
+    padding: 18px;
+  }
+  .about{
+    padding: 64px 0;
+  }
+}
