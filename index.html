@@ -64,120 +64,138 @@
 
  <!-- MÚSICAS + LIVE (layout 2 colunas) -->
 <section class="section section-media" id="musicas" aria-label="Sobre, músicas e vídeos">
-  <!-- Background vídeo (loop) -->
+  <!-- Background: vídeo em loop (com fallback em background.png via CSS) -->
   <video class="section-media__bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
-    <source src="assets/videos/VideoLoop.mp4" type="video/mp4" />
+    <source src="VideoLoop.mp4" type="video/mp4" />
   </video>
   <div class="section-media__overlay" aria-hidden="true"></div>
 
   <div class="container section-media__content">
-    <!-- SOBRE -->
-    <div class="media-about" id="sobre">
-      <div class="kicker">SOBRE</div>
-      <h2 class="media-title">SU7 — Somos Um em Cristo</h2>
-      <p class="media-text">
-        A SU7 é uma banda de rock/pop rock gospel fundada em 2015, com a missão de transmitir a Palavra e criar experiências edificantes através da música.
-      </p>
-      <p class="media-text">
-        O nome significa <strong>“Somos Um em Cristo”</strong> e o número <strong>7</strong> representa perfeição divina e unidade em Cristo.
-      </p>
+    <!-- SOBRE + PODCAST -->
+    <div class="media-top" id="sobre">
+      <div class="media-about">
+        <div class="kicker">SOBRE</div>
+        <h2 class="media-title">SU7 — Somos Um em Cristo</h2>
 
-      <div class="media-verse" aria-label="Versículo">
-        <div class="media-verse__ref">GÁLATAS 3:28</div>
-        <div class="media-verse__text">“...porque todos vós sois um em Cristo Jesus.”</div>
+        <p class="media-text">
+          A Banda SU7, cujo nome significa <strong>&quot;Somos Um em Cristo&quot;</strong>, reflete uma identidade espiritual profunda, com o número <strong>7</strong>
+          simbolizando perfeição divina e unidade em Cristo. Fundada em 2015, a banda combina elementos de rock e pop rock com o propósito de adorar e servir ao Senhor Jesus.
+          Além de difundir sua mensagem de fé e amor, a SU7 transcende as fronteiras da igreja local para alcançar corações necessitados da esperança e salvação encontradas em Cristo,
+          atingindo diversos públicos. Nossa missão é transmitir a palavra de Deus e criar experiências edificantes através da música gospel, sendo um instrumento de transformação e
+          redenção de vidas. Nossa abordagem musical é autêntica e inspiradora, promovendo uma adoração sincera baseada nos princípios bíblicos e no compromisso com a verdade.
+        </p>
+
+        <div class="media-verse" aria-label="Versículo">
+          <div class="media-verse__ref">GÁLATAS 3:28</div>
+          <div class="media-verse__text">“...porque todos vós sois um em Cristo Jesus.”</div>
+        </div>
       </div>
+
+      <aside class="media-podcast" aria-label="Podcast Falando de Áudio">
+        <div class="kicker">PODCAST</div>
+        <h3 class="podcast-title">Falando de Áudio</h3>
+        <p class="podcast-text">Episódio com a trajetória da SU7 e músicas autorais.</p>
+
+        <a class="podcast-thumb" href="#live" aria-label="Ir para o player do podcast Falando de Áudio">
+          <img src="https://img.youtube.com/vi/QveKPBhZJVs/hqdefault.jpg" alt="Capa do podcast Falando de Áudio com a SU7" loading="lazy" />
+          <span class="podcast-play" aria-hidden="true">▶</span>
+        </a>
+
+        <div class="podcast-actions">
+          <a class="btn btn-primary" href="#live">Assistir aqui</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=QveKPBhZJVs" target="_blank" rel="noreferrer noopener">YouTube</a>
+        </div>
+      </aside>
     </div>
 
-    <!-- MÚSICAS (lista minimalista) -->
-    <div class="media-tracks" aria-label="Músicas">
-      <div class="kicker">MÚSICAS</div>
+    <!-- MÚSICAS + AMOSTRA -->
+    <div class="media-bottom" aria-label="Músicas e amostra">
+      <div class="media-players" aria-label="Músicas (Spotify e YouTube)">
+        <div class="kicker">MÚSICAS</div>
 
-      <div class="tracklist" role="list">
-        <!-- Dica: edite os títulos/subtítulos abaixo conforme o nome oficial de cada faixa -->
-        <a class="track" role="listitem"
-           href="https://music.youtube.com/watch?v=bHc_WxYSxEs&si=lMy9RQNcBxqh9KnI"
-           target="_blank" rel="noreferrer noopener"
-           aria-label="Ouvir Faixa 01 no YouTube Music">
-          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
-          <div class="track__meta">
-            <div class="track__title">Faixa 01</div>
-            <div class="track__sub">SU7</div>
+        <div class="player-stack">
+          <div class="player-card" aria-label="No Centro da Tua Vontade (Spotify)">
+            <div class="player-label">NO CENTRO DA TUA VONTADE</div>
+            <div class="player-embed player-embed--spotify">
+              <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/4UncTxzbZF5fHT3PKjRLjS?utm_source=generator"
+                width="100%" height="152" frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
           </div>
-          <div class="track__right">
-            <span class="pill">YT</span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-        </a>
 
-        <a class="track" role="listitem"
-           href="https://open.spotify.com/track/4UncTxzbZF5fHT3PKjRLjS"
-           target="_blank" rel="noreferrer noopener"
-           aria-label="Ouvir Faixa 02 no Spotify">
-          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
-          <div class="track__meta">
-            <div class="track__title">Faixa 02</div>
-            <div class="track__sub">SU7</div>
+          <div class="player-card" aria-label="Jesus é o Caminho (Spotify)">
+            <div class="player-label">JESUS É O CAMINHO</div>
+            <div class="player-embed player-embed--spotify">
+              <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/2IQWQqZ9ww4BE6eoZzP67F?utm_source=generator"
+                width="100%" height="152" frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
           </div>
-          <div class="track__right">
-            <span class="pill">SP</span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-        </a>
 
-        <a class="track" role="listitem"
-           href="https://open.spotify.com/track/2IQWQqZ9ww4BE6eoZzP67F"
-           target="_blank" rel="noreferrer noopener"
-           aria-label="Ouvir Faixa 03 no Spotify">
-          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
-          <div class="track__meta">
-            <div class="track__title">Faixa 03</div>
-            <div class="track__sub">SU7</div>
+          <div class="player-card" aria-label="Filho de Davi (YouTube)">
+            <div class="player-label">FILHO DE DAVI</div>
+            <div class="player-embed player-embed--youtube">
+              <iframe
+                style="border-radius:12px"
+                width="100%" height="152"
+                src="https://www.youtube.com/embed/bHc_WxYSxEs?si=pDuc4b4S2yPWBomN"
+                title="FILHO DE DAVI — Banda SU7"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"></iframe>
+            </div>
           </div>
-          <div class="track__right">
-            <span class="pill">SP</span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-        </a>
+        </div>
       </div>
+
+      <article class="media-reel" aria-label="Amostra — Nova versão da música Leão de Judá">
+        <div class="kicker">AMOSTRA</div>
+        <h3 class="reel-title">Leão de Judá (nova versão)</h3>
+
+        <div class="reel-wrap">
+          <video class="reel" controls playsinline preload="metadata">
+            <source src="video-001.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo em HTML5.
+          </video>
+        </div>
+
+        <p class="reel-text">Spoiler de um evento — solo de guitarra.</p>
+      </article>
     </div>
 
-    <!-- VÍDEOS -->
-    <div class="media-grid">
-      <!-- Live -->
-      <article class="media-card" id="live" aria-label="Live no Podcast">
+    <!-- LIVE / PODCAST (player no site) -->
+    <div class="media-live" id="live" aria-label="Player do Podcast Falando de Áudio">
+      <div class="kicker">LIVE</div>
+
+      <article class="media-card" aria-label="Podcast Falando de Áudio — episódio com a SU7">
         <div class="embed embed--video">
           <iframe
             src="https://www.youtube.com/embed/QveKPBhZJVs?si=gbGgKdCtOTk-e9Cb"
-            title="Banda SU7 — Live no Podcast"
+            title="PODCAST FALANDO DE ÁUDIO — Banda SU7"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen></iframe>
         </div>
         <div class="media-meta">
-          <h3>Live</h3>
-          <p>Assista completo.</p>
-        </div>
-      </article>
-
-      <!-- Reel / Spoiler -->
-      <article class="media-card" aria-label="Spoiler — solo de guitarra (Leão de Judá)">
-        <div class="embed embed--reel">
-          <video class="reel" controls playsinline preload="metadata">
-            <source src="assets/videos/video-001.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeo em HTML5.
-          </video>
-        </div>
-        <div class="media-meta">
-          <h3>Spoiler</h3>
-          <p>Solo de guitarra — <strong>Leão de Judá</strong>.</p>
+          <h3>Falando de Áudio</h3>
+          <p>Trajetória da SU7 + músicas autorais.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- INTEGRANTES -->
+
+    <!-- INTEGRANTES -->
     <section class="section section-dark" id="integrantes">
       <div class="container">
         <div class="section-head">
@@ -247,43 +265,63 @@
       </div>
     </section>
 
-    <!-- CONTATO -->
-<section class="section section-dark" id="contato">
+    <!-- CONTATO (WhatsApp: SU7 + Produtora) -->
+<section class="section section-dark" id="contato" aria-label="Contato">
   <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Contato</h2>
-      <p class="section-text">Shows, convites e parcerias — fale com a SU7 ou com a produtora oficial.</p>
-    </div>
+    <div class="final-cta final-cta--split">
+      <!-- SU7 -->
+      <div class="final-cta__left">
+        <h2>Fale com a SU7</h2>
+        <p>Agendas, Entrevistas, Podcasts, Participações especiais entre outros.</p>
 
-    <div class="contact-grid">
-      <article class="contact-card">
-        <h3 class="contact-title">WhatsApp da SU7</h3>
-        <p class="contact-text">Fale diretamente com a banda para agendas, eventos e informações.</p>
-        <a class="btn btn-primary btn-block btn-xl" href="https://wa.me/556584722445" target="_blank" rel="noreferrer noopener">
-          Chamar no WhatsApp
-        </a>
-        <div class="contact-meta">+55 65 8472-2445</div>
-      </article>
+        <div class="contact-actions">
+          <a class="btn btn-primary btn-xl" href="https://wa.me/556584722445" target="_blank" rel="noreferrer noopener">
+            Chamar no WhatsApp
+          </a>
 
-      <article class="contact-card contact-card--alt" aria-label="Produtora parceira">
-        <img class="contact-logo" src="assets/img/mmm2-1024x530.png" alt="MultiShowGospel" loading="lazy" />
-        <h3 class="contact-title">Produtora (MultiShowGospel)</h3>
-        <p class="contact-text">Negociação, logística e produção de shows.</p>
-        <a class="btn btn-ghost btn-block btn-xl" href="https://wa.me/5565999056500" target="_blank" rel="noreferrer noopener">
-          Falar com a Produtora
-        </a>
-        <div class="contact-meta">(65) 99905-6500</div>
-      </article>
+          <img class="contact-qr" src="assets/img/qr-su7-whatsapp.svg" alt="QR Code do WhatsApp da SU7" loading="lazy" />
+        </div>
+
+        <div class="contact-meta-line">
+          <a class="contact-link" href="tel:+556584722445">+55 65 8472-2445</a>
+        </div>
+      </div>
+
+      <!-- MULTISHOW -->
+      <aside class="final-cta__right" aria-label="Produtora oficial (MultiShowGospel)">
+        <div class="partner-card">
+          <img class="partner-logo" src="assets/img/mmm2-1024x530.png" alt="MultiShowGospel" loading="lazy" />
+
+          <div class="partner-actions">
+            <div class="partner-copy">
+              <div class="partner-title">Produção de Shows</div>
+              <div class="partner-sub">Logística • Negociação</div>
+            </div>
+
+            <a class="btn btn-ghost btn-block" href="https://wa.me/5565999056500" target="_blank" rel="noreferrer noopener">
+              Falar com a Produtora
+            </a>
+
+            <div class="partner-phone">
+              <a class="contact-link" href="tel:+5565999056500">(65) 99905-6500</a>
+              <span class="dot">•</span>
+              <a class="contact-link" href="mailto:producoesmsg@gmail.com">producoesmsg@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
-
 
 <footer class="footer">
       <div class="container footer-row">
         <div class="footer-left">
           <img src="assets/img/logo.png" alt="Logo SU7" class="footer-logo" />
-          <div class="footer-sub">© <span id="year"></span> • Todos os direitos reservados.</div>
+          <div>
+            <div class="footer-title">BANDA SU7</div>
+            <div class="footer-sub">© <span id="year"></span> • Todos os direitos reservados.</div>
+          </div>
         </div>
 
         <div class="footer-right">
