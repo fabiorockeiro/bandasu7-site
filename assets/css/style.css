@@ -219,38 +219,198 @@ button{font:inherit; color:inherit}
   border-bottom: 1px solid var(--line);
 }
 
-/* Seção Músicas: fundo com background.png */
-.section-spotify{
+/* ============ Sessão "Sobre + Músicas + Vídeos" (background em vídeo) ============ */
+.section-media{
   position: relative;
-  overflow:hidden;
-  background-image: url("../img/background.png");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  background: #000 url("../img/background.png") center/cover no-repeat;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.section-spotify::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(800px 400px at 30% 0%, rgba(0,178,255,.18), transparent 60%),
-              linear-gradient(180deg, rgba(0,0,0,.74), rgba(0,0,0,.55));
-  pointer-events:none;
-  z-index:0;
+
+.section-media__bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .28;
+  filter: saturate(1.05) contrast(1.05);
+  transform: scale(1.02);
 }
-.section-spotify > .container{position:relative; z-index:1}
+
+.section-media__overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 500px at 20% 0%, rgba(0,178,255,.22), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.80), rgba(0,0,0,.55));
+  pointer-events: none;
+}
+
+.section-media__content{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 18px;
+}
+
+.kicker{
+  font-weight: 1000;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255,255,255,.70);
+  margin-bottom: 10px;
+}
+
+.media-about{
+  max-width: 880px;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  backdrop-filter: blur(10px);
+}
+
+.media-title{
+  margin: 0 0 10px;
+  font-size: 26px;
+  letter-spacing: -.01em;
+}
+
+.media-text{
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.82);
+  line-height: 1.75;
+}
+.media-text:last-child{margin-bottom: 0;}
+
+.media-verse{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,178,255,.26);
+  background: rgba(0,178,255,.10);
+}
+.media-verse__ref{
+  font-weight: 1000;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+.media-verse__text{
+  margin-top: 8px;
+  color: rgba(255,255,255,.88);
+  line-height: 1.7;
+}
+
+.media-tracks{max-width: 880px;}
+.tracklist{display: grid; gap: 8px;}
+
+.track{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.40);
+  box-shadow: 0 14px 40px rgba(0,0,0,.34);
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.track:hover{
+  transform: translateY(-1px);
+  background: rgba(0,0,0,.52);
+  border-color: rgba(255,255,255,.20);
+}
+
+.track__art{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  object-fit: contain;
+  padding: 6px;
+  flex: 0 0 auto;
+}
+
+.track__meta{min-width: 0; flex: 1 1 auto;}
+
+.track__title{
+  font-weight: 1000;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track__sub{
+  margin-top: 2px;
+  font-size: 12px;
+  color: rgba(255,255,255,.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track__right{display: flex; align-items: center; gap: 10px; flex: 0 0 auto;}
+
+.pill{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,178,255,.26);
+  background: rgba(0,178,255,.10);
+  font-weight: 1000;
+  letter-spacing: .12em;
+  font-size: 10px;
+  color: rgba(255,255,255,.88);
+}
+
+.chev{
+  font-size: 22px;
+  line-height: 1;
+  opacity: .75;
+}
+
+.media-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.embed--reel{
+  padding: 12px;
+  background: rgba(0,0,0,.30);
+}
+
+.reel{
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.55);
+  display: block;
+}
+
+@media (max-width: 980px){
+  .media-grid{grid-template-columns: 1fr;}
+  .section-media__bg{opacity: .22;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .section-media__bg{display:none;}
+}
 
 /* ============ Media (Spotify + Vídeo) ============ */
-.music-live{
-  display:grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 14px;
-  margin-top: 16px;
-  align-items:start;
-}
-.music-live__left{display:grid; gap: 14px}
-.music-live__right{display:block}
-
 .media-card{
   border: 1px solid var(--line);
   border-radius: var(--radius2);
@@ -261,23 +421,11 @@ button{font:inherit; color:inherit}
 
 .embed{background: rgba(0,0,0,.30)}
 .embed--video{aspect-ratio: 16 / 9;}
-.embed--video-tall{aspect-ratio: 16 / 10;}
 .embed--video iframe{width:100%; height:100%}
-
-.embed--spotify,
-.embed--spotify-sm{
-  padding: 14px;
-}
-.embed--spotify iframe{width:100%}
 
 .media-meta{padding: 14px}
 .media-meta h3{margin:0 0 6px}
 .media-meta p{margin:0; color: var(--muted); line-height:1.6}
-
-.media-card--sticky{
-  position: sticky;
-  top: calc(var(--headerH) + 14px);
-}
 
 /* ============ Integrantes ============ */
 .members-grid{
@@ -315,99 +463,6 @@ button{font:inherit; color:inherit}
 .member-ig:hover{
   border-color: rgba(0,178,255,.26);
   box-shadow: 0 0 0 4px rgba(0,178,255,.08)
-}
-
-/* ============ Sobre (About) ============ */
-.about{
-  position: relative;
-  width: 100%;
-  padding: 84px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
-  background: #000; /* fallback */
-}
-
-.about__bg{
-  position:absolute;
-  inset:0;
-  background-image: url("../img/background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: saturate(1.05) contrast(1.05);
-  transform: scale(1.02);
-  z-index: 0;
-}
-
-.about::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(90deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.35) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.about__inner{
-  position: relative;
-  z-index: 2;
-  display:flex;
-  align-items: stretch;
-  gap: 18px;
-}
-
-.about__content{
-  flex: 1 1 640px;
-  background: rgba(0,0,0,.92);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--radius2);
-  box-shadow: var(--shadow);
-  padding: 22px;
-}
-
-.about__title{
-  margin:0 0 10px;
-  font-size: 30px;
-  letter-spacing:-.01em;
-}
-
-.about__text{
-  margin: 0 0 12px;
-  color: rgba(255,255,255,.80);
-  line-height: 1.75;
-}
-
-.about__verse{
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 18px;
-  border: 1px solid rgba(0,178,255,.26);
-  background: rgba(0,178,255,.10);
-}
-.about__verseTitle{
-  font-weight: 1000;
-  letter-spacing:.14em;
-  text-transform: uppercase;
-  font-size: 11px;
-  opacity:.95;
-}
-.about__verseText{
-  margin-top: 8px;
-  color: rgba(255,255,255,.88);
-  line-height: 1.7;
-}
-
-.about__art{flex: 0 1 420px; display:flex; align-items: stretch}
-.about__art img{
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: var(--radius2);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: var(--shadow);
-  background: rgba(0,0,0,.35);
 }
 
 /* ============ Galeria (Mosaic + Lightbox) ============ */
@@ -603,15 +658,7 @@ button{font:inherit; color:inherit}
 @media (max-width: 980px){
   .nav{display:none}
   .hamburger{display:inline-block}
-
-  .music-live{grid-template-columns: 1fr;}
-  .media-card--sticky{position: static;}
-  .embed--video-tall{aspect-ratio: 16 / 9;}
-
-  .mosaic{grid-template-columns: repeat(6, minmax(0,1fr));}
-  .about__inner{flex-direction: column;}
-  .about{padding: 64px 0;}
-  .about__content{padding: 18px;}
+    .mosaic{grid-template-columns: repeat(6, minmax(0,1fr));}
 
   .contact-grid{grid-template-columns: 1fr;}
 }

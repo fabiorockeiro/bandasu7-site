@@ -63,71 +63,121 @@
     </section>
 
  <!-- MÚSICAS + LIVE (layout 2 colunas) -->
-<section class="section section-spotify" id="musicas">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Músicas & Live</h2>
-      <p class="section-text">Ouça nossas faixas no Spotify e assista à live completa no YouTube.</p>
+<section class="section section-media" id="musicas" aria-label="Sobre, músicas e vídeos">
+  <!-- Background vídeo (loop) -->
+  <video class="section-media__bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+    <source src="assets/videos/VideoLoop.mp4" type="video/mp4" />
+  </video>
+  <div class="section-media__overlay" aria-hidden="true"></div>
+
+  <div class="container section-media__content">
+    <!-- SOBRE -->
+    <div class="media-about" id="sobre">
+      <div class="kicker">SOBRE</div>
+      <h2 class="media-title">SU7 — Somos Um em Cristo</h2>
+      <p class="media-text">
+        A SU7 é uma banda de rock/pop rock gospel fundada em 2015, com a missão de transmitir a Palavra e criar experiências edificantes através da música.
+      </p>
+      <p class="media-text">
+        O nome significa <strong>“Somos Um em Cristo”</strong> e o número <strong>7</strong> representa perfeição divina e unidade em Cristo.
+      </p>
+
+      <div class="media-verse" aria-label="Versículo">
+        <div class="media-verse__ref">GÁLATAS 3:28</div>
+        <div class="media-verse__text">“...porque todos vós sois um em Cristo Jesus.”</div>
+      </div>
     </div>
 
-    <div class="music-live">
-      <!-- ESQUERDA: 3 músicas empilhadas -->
-      <div class="music-live__left">
-        <article class="media-card">
-          <div class="embed embed--spotify embed--spotify-sm">
-            <iframe data-testid="embed-iframe" style="border-radius:12px"
-              src="https://open.spotify.com/embed/track/7easy7qsOxM2yPOsRwhqTr?utm_source=generator&theme=0"
-              width="100%" height="152" frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
-          </div>
-</article>
+    <!-- MÚSICAS (lista minimalista) -->
+    <div class="media-tracks" aria-label="Músicas">
+      <div class="kicker">MÚSICAS</div>
 
-        <article class="media-card">
-          <div class="embed embed--spotify embed--spotify-sm">
-            <iframe data-testid="embed-iframe" style="border-radius:12px"
-              src="https://open.spotify.com/embed/track/4UncTxzbZF5fHT3PKjRLjS?utm_source=generator&theme=0"
-              width="100%" height="152" frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
+      <div class="tracklist" role="list">
+        <!-- Dica: edite os títulos/subtítulos abaixo conforme o nome oficial de cada faixa -->
+        <a class="track" role="listitem"
+           href="https://music.youtube.com/watch?v=bHc_WxYSxEs&si=lMy9RQNcBxqh9KnI"
+           target="_blank" rel="noreferrer noopener"
+           aria-label="Ouvir Faixa 01 no YouTube Music">
+          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
+          <div class="track__meta">
+            <div class="track__title">Faixa 01</div>
+            <div class="track__sub">SU7</div>
           </div>
-</article>
+          <div class="track__right">
+            <span class="pill">YT</span>
+            <span class="chev" aria-hidden="true">›</span>
+          </div>
+        </a>
 
-        <article class="media-card">
-          <div class="embed embed--spotify embed--spotify-sm">
-            <iframe data-testid="embed-iframe" style="border-radius:12px"
-              src="https://open.spotify.com/embed/track/2IQWQqZ9ww4BE6eoZzP67F?utm_source=generator&theme=0"
-              width="100%" height="152" frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
+        <a class="track" role="listitem"
+           href="https://open.spotify.com/track/4UncTxzbZF5fHT3PKjRLjS"
+           target="_blank" rel="noreferrer noopener"
+           aria-label="Ouvir Faixa 02 no Spotify">
+          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
+          <div class="track__meta">
+            <div class="track__title">Faixa 02</div>
+            <div class="track__sub">SU7</div>
           </div>
-</article>
+          <div class="track__right">
+            <span class="pill">SP</span>
+            <span class="chev" aria-hidden="true">›</span>
+          </div>
+        </a>
+
+        <a class="track" role="listitem"
+           href="https://open.spotify.com/track/2IQWQqZ9ww4BE6eoZzP67F"
+           target="_blank" rel="noreferrer noopener"
+           aria-label="Ouvir Faixa 03 no Spotify">
+          <img class="track__art" src="assets/img/logo.png" alt="" aria-hidden="true" />
+          <div class="track__meta">
+            <div class="track__title">Faixa 03</div>
+            <div class="track__sub">SU7</div>
+          </div>
+          <div class="track__right">
+            <span class="pill">SP</span>
+            <span class="chev" aria-hidden="true">›</span>
+          </div>
+        </a>
       </div>
+    </div>
 
-      <!-- DIREITA: live/podcast -->
-      <aside class="music-live__right">
-        <article class="media-card media-card--sticky" id="live">
-          <div class="embed embed--video embed--video-tall">
-            <iframe
-              src="https://www.youtube.com/embed/QveKPBhZJVs?si=gbGgKdCtOTk-e9Cb"
-              title="Banda SU7 — Live no Podcast"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-          </div>
-          <div class="media-meta">
-            <h3>Live no Podcast</h3>
-            <p>Ao vivo, do nosso jeito — assista completo.</p>
-          </div>
-        </article>
-      </aside>
+    <!-- VÍDEOS -->
+    <div class="media-grid">
+      <!-- Live -->
+      <article class="media-card" id="live" aria-label="Live no Podcast">
+        <div class="embed embed--video">
+          <iframe
+            src="https://www.youtube.com/embed/QveKPBhZJVs?si=gbGgKdCtOTk-e9Cb"
+            title="Banda SU7 — Live no Podcast"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <div class="media-meta">
+          <h3>Live</h3>
+          <p>Assista completo.</p>
+        </div>
+      </article>
+
+      <!-- Reel / Spoiler -->
+      <article class="media-card" aria-label="Spoiler — solo de guitarra (Leão de Judá)">
+        <div class="embed embed--reel">
+          <video class="reel" controls playsinline preload="metadata">
+            <source src="assets/videos/video-001.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo em HTML5.
+          </video>
+        </div>
+        <div class="media-meta">
+          <h3>Spoiler</h3>
+          <p>Solo de guitarra — <strong>Leão de Judá</strong>.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-
-    <!-- INTEGRANTES -->
+<!-- INTEGRANTES -->
     <section class="section section-dark" id="integrantes">
       <div class="container">
         <div class="section-head">
@@ -185,40 +235,7 @@
     </section>
 
   <!-- SOBRE (bio) -->
-<section class="about" id="sobre" aria-label="Sobre a Banda SU7">
-  <div class="about__bg" aria-hidden="true"></div>
-
-  <div class="container about__inner">
-    <div class="about__content">
-      <h2 class="about__title">Sobre a SU7</h2>
-
-      <p class="about__text">
-        A Banda SU7, cujo nome significa <strong>“Somos Um em Cristo”</strong>, reflete uma identidade espiritual profunda,
-        com o número <strong>7</strong> simbolizando perfeição divina e unidade em Cristo. Fundada em <strong>2015</strong>,
-        a banda combina elementos de <strong>rock</strong> e <strong>pop rock</strong> com o propósito de adorar e servir ao
-        Senhor Jesus.
-      </p>
-
-      <p class="about__text">
-        Além de difundir sua mensagem de fé e amor, a SU7 transcende as fronteiras da igreja local para alcançar corações
-        necessitados da esperança e salvação encontradas em Cristo. Nossa missão é transmitir a palavra de Deus e criar
-        experiências edificantes através da música gospel, sendo um instrumento de transformação e redenção de vidas.
-      </p>
-
-      <div class="about__verse">
-        <div class="about__verseTitle">Gálatas 3:28</div>
-        <div class="about__verseText">“...porque todos vós sois um em Cristo Jesus.”</div>
-      </div>
-</div>
-
-    <div class="about__art" aria-label="Foto da banda">
-      <img src="assets/img/banda.png" alt="Banda SU7" />
-    </div>
-  </div>
-</section>
-
-
-     <!-- GALERIA (mosaico criativo + lightbox) -->
+<!-- GALERIA (mosaico criativo + lightbox) -->
     <section class="section" id="galeria">
       <div class="container">
         <div class="section-head">
