@@ -83,6 +83,8 @@
     { src: "assets/img/Djow-001.jpg", cap: "Djow • Bateria" },
     { src: "assets/img/Djow-002.jpg", cap: "Djow • Bateria" },
     { src: "assets/img/Djow-004.jpg", cap: "Djow • Bateria" },
+    { src: "assets/img/Djow-006.jpg", cap: "Djow • Bateria" },
+
 
     { src: "assets/img/Jonas-002.jpg", cap: "Jonas • Teclado" },
     { src: "assets/img/jonas-001.jpg", cap: "Jonas • Teclado" },
