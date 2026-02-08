@@ -1,72 +1,84 @@
-// Hamburger Menu
-// Adiciona interatividade ao menu hamburger
-document.getElementById("hamburger").addEventListener("click", function () {
-  const navbarLinks = document.getElementById("navbar-links");
-  navbarLinks.classList.toggle("active"); // Adiciona ou remove a classe 'active'
-});
+(() => {
+  const $ = (q) => document.querySelector(q);
 
-// Aplica uma transição suave ao abrir e fechar o menu
-function handleMenuTransition() {
-  const navbarLinks = document.getElementById("navbar-links");
-  if (navbarLinks.classList.contains("active")) {
-    navbarLinks.style.display = "flex"; // Mostra o menu
-    navbarLinks.style.transform = "translateY(0)"; // Anima para dentro
-    navbarLinks.style.opacity = "1";
-  } else {
-    navbarLinks.style.transform = "translateY(-100%)"; // Anima para fora
-    navbarLinks.style.opacity = "0";
-  }
-}
+  // Ano automático
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-// Formulário de Contato - Validação Simples
-document
-  .getElementById("contactForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    alert("Mensagem enviada com sucesso!");
-  });
-
-// Função para aplicar a transição suave
-function applySmoothTransition() {
-  document.body.classList.add("fade"); // Adiciona a classe que inicia o fade-out
-}
-
-// Função para gerenciar os links e adicionar a animação de saída
-function handlePageTransitions() {
-  const links = document.querySelectorAll("a"); // Seleciona todos os links
-
-  links.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      if (link.href.includes("#")) return; // Ignora links de âncora internos
-
-      event.preventDefault(); // Evita o comportamento padrão do link
-      const targetUrl = link.href; // Guarda o URL do link
-
-      applySmoothTransition(); // Inicia a transição
-
-      setTimeout(() => {
-        window.location.href = targetUrl; // Redireciona para a nova página após a transição
-      }, 500); // Tempo da transição em milissegundos
+  // Menu mobile
+  const menuBtn = $("#menuBtn");
+  const mobileMenu = $("#mobileMenu");
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener("click", () => {
+      const isOpen = !mobileMenu.hasAttribute("hidden");
+      if (isOpen) {
+        mobileMenu.setAttribute("hidden", "");
+        menuBtn.setAttribute("aria-expanded", "false");
+      } else {
+        mobileMenu.removeAttribute("hidden");
+        menuBtn.setAttribute("aria-expanded", "true");
+      }
     });
-  });
-}
 
-// Aplica a transição suave ao carregar a página
-window.addEventListener("DOMContentLoaded", handlePageTransitions);
+    // Fecha ao clicar em links
+    mobileMenu.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        mobileMenu.setAttribute("hidden", "");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
-// JavaScript para rodapé e interações extras, se necessário
+  // Copiar presskit (troque pelo seu link real)
+  const presskitUrl = "https://seusite.com/presskit";
+  const copyBtn = $("#copyPresskit");
+  const copyMsg = $("#copyMsg");
 
-document.querySelectorAll(".footer-section a").forEach((link) => {
-  link.addEventListener("click", function (event) {
-    if (link.href.includes("#")) return; // Ignora links de âncora internos
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(presskitUrl);
+        if (copyMsg) copyMsg.textContent = "Link do presskit copiado!";
+      } catch (e) {
+        if (copyMsg) copyMsg.textContent = "Não foi possível copiar automaticamente. Copie manualmente: " + presskitUrl;
+      }
+      setTimeout(() => { if (copyMsg) copyMsg.textContent = ""; }, 3500);
+    });
+  }
 
-    event.preventDefault(); // Evita o comportamento padrão do link
-    const targetUrl = link.href; // Guarda o URL do link
+  // Formulário: por padrão abre WhatsApp com a mensagem (simples e funciona em static hosting)
+  const form = $("#contactForm");
+  const formMsg = $("#formMsg");
 
-    applySmoothTransition(); // Inicia a transição suave
+  if (form) {
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
 
-    setTimeout(() => {
-      window.location.href = targetUrl; // Redireciona para a nova página após a transição
-    }, 500); // Tempo da transição em milissegundos
-  });
-});
+      const data = new FormData(form);
+      const nome = (data.get("nome") || "").toString().trim();
+      const whatsapp = (data.get("whatsapp") || "").toString().trim();
+      const email = (data.get("email") || "").toString().trim();
+      const cidade = (data.get("cidade") || "").toString().trim();
+      const mensagem = (data.get("mensagem") || "").toString().trim();
+
+      const text =
+`Olá! Quero levar a banda para a minha cidade.
+Nome: ${nome}
+WhatsApp: ${whatsapp}
+E-mail: ${email}
+Cidade/UF: ${cidade}
+Mensagem: ${mensagem || "(sem mensagem)"}
+`;
+
+      // Troque pelo WhatsApp da produção (DDI+DDD+numero, só dígitos)
+      const phone = "5565999999999";
+
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank", "noopener");
+
+      if (formMsg) formMsg.textContent = "Abrindo WhatsApp com sua solicitação…";
+      form.reset();
+      setTimeout(() => { if (formMsg) formMsg.textContent = ""; }, 3500);
+    });
+  }
+})();

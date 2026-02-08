@@ -1,346 +1,300 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Banda SU7 | Site Oficial</title>
-  <meta name="description" content="Banda SU7 — shows, agenda, músicas, vídeos e contato para eventos." />
-  <meta name="theme-color" content="#0b0f19" />
+  <title>SUA BANDA — Site Oficial</title>
+  <meta name="description" content="Site oficial da SUA BANDA — agenda, lançamentos e contato para shows." />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Banda SU7 | Site Oficial" />
-  <meta property="og:description" content="Shows, agenda, músicas, vídeos e contato para eventos." />
-  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SUA BANDA — Site Oficial" />
+  <meta property="og:description" content="Agenda, lançamentos, mídia e contato para shows." />
   <meta property="og:image" content="assets/img/og.jpg" />
+  <meta property="og:type" content="website" />
 
   <link rel="icon" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-  <!-- Top bar -->
-  <header class="top">
-    <div class="container top__row">
-      <a class="brand" href="#home" aria-label="Ir para o início">
-        <span class="brand__mark">SU7</span>
-        <span class="brand__name">Banda</span>
+  <!-- BG decor -->
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Ir para o topo">
+        <img class="brand__logo" src="assets/img/logo.png" alt="Logo da banda" />
       </a>
 
       <nav class="nav" aria-label="Navegação principal">
-        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
-          <span class="nav__toggleLine"></span>
-          <span class="nav__toggleLine"></span>
-          <span class="nav__toggleLine"></span>
-          <span class="sr-only">Abrir menu</span>
-        </button>
-
-        <ul class="nav__menu" id="navMenu">
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#shows">Shows</a></li>
-          <li><a href="#musica">Música</a></li>
-          <li><a href="#galeria">Galeria</a></li>
-          <li><a href="#contato" class="btn btn--sm">Contratar</a></li>
-        </ul>
+        <a href="#tour">Tour</a>
+        <a href="#lancamento">Lançamento</a>
+        <a href="#midias">Plataformas</a>
+        <a href="#contato">Contato</a>
       </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile" id="mobileMenu" hidden>
+      <a href="#tour">Tour</a>
+      <a href="#lancamento">Lançamento</a>
+      <a href="#midias">Plataformas</a>
+      <a href="#contato">Contato</a>
     </div>
   </header>
 
   <!-- Hero -->
-  <main id="home" class="hero">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <div class="container hero__grid">
-      <div class="hero__content">
-        <div class="pill">AO VIVO • EVENTOS • FESTAS</div>
-        <h1 class="hero__title">
-          Banda <span class="grad">SU7</span>
+  <main id="top">
+    <section class="hero">
+      <div class="hero__media" aria-hidden="true">
+        <!-- Troque por um banner real da banda -->
+        <img src="assets/img/hero-banner.jpg" alt="" />
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="container hero__content">
+        <p class="kicker">SITE OFICIAL</p>
+
+        <h1 class="title">
+          SUA BANDA <span class="title__accent">AO VIVO</span>
         </h1>
-        <p class="hero__subtitle">
-          Show profissional, repertório atualizado e presença de palco.
-          Leve energia de verdade pro seu evento.
+
+        <p class="subtitle">
+          Rock/Pop/Indie — nova fase, novas histórias e shows pra cantar junto.
         </p>
 
         <div class="hero__cta">
-          <a class="btn" href="#contato">Solicitar orçamento</a>
-          <a class="btn btn--ghost" href="#shows">Ver agenda</a>
+          <a class="btn btn--primary" href="#tour">Ver agenda</a>
+          <a class="btn btn--ghost" href="#contato">Levar pra minha cidade</a>
         </div>
 
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__n">+100</div>
-            <div class="stat__l">Eventos</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">Repertório</div>
-            <div class="stat__l">Pop • Rock • Flash • Atual</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">Som & Luz</div>
-            <div class="stat__l">Estrutura sob demanda</div>
-          </div>
+        <div class="chips">
+          <span class="chip">Turnê 2026</span>
+          <span class="chip">Novo single</span>
+          <span class="chip">Merch oficial</span>
         </div>
       </div>
+    </section>
 
-      <aside class="hero__card">
-        <div class="card">
-          <div class="card__head">
-            <div>
-              <div class="kicker">Próximo show</div>
-              <div class="card__title" id="nextShowTitle">Em breve</div>
+    <!-- Tour -->
+    <section class="section" id="tour">
+      <div class="container">
+        <div class="section__head">
+          <h2>Sobre a Tour</h2>
+          <p>Um show pensado para reviver clássicos e apresentar a nova era.</p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card card--highlight">
+            <h3>TURNÊ — “NOME DA TOUR”</h3>
+            <p>
+              Energia alta, setlist equilibrado e produção pronta pra festival e casa.
+              (Edite esse texto com a história da sua tour.)
+            </p>
+
+            <ul class="bullets">
+              <li>Show completo (70–90 min)</li>
+              <li>Formato festival (45–60 min)</li>
+              <li>Rider técnico disponível</li>
+            </ul>
+
+            <div class="actions">
+              <a class="btn btn--primary" href="#contato">Solicitar orçamento</a>
+              <a class="btn btn--ghost" href="assets/img/rider.pdf" target="_blank" rel="noopener">Baixar rider</a>
             </div>
-            <span class="badge" id="nextShowBadge">CONFIRMADO</span>
-          </div>
+          </article>
 
-          <div class="card__body">
-            <div class="info">
-              <span class="info__k">Data</span>
-              <span class="info__v" id="nextShowDate">—</span>
+          <aside class="card">
+            <h3>Agenda</h3>
+
+            <!-- Exemplo de lista -->
+            <div class="shows" id="showsList">
+              <div class="show">
+                <div class="show__date">
+                  <span class="show__day">15</span>
+                  <span class="show__mon">MAR</span>
+                </div>
+                <div class="show__info">
+                  <strong>Cuiabá/MT</strong>
+                  <span>Casa X — 21:00</span>
+                </div>
+                <a class="show__link" href="#" target="_blank" rel="noopener">Ingressos</a>
+              </div>
+
+              <div class="show">
+                <div class="show__date">
+                  <span class="show__day">22</span>
+                  <span class="show__mon">MAR</span>
+                </div>
+                <div class="show__info">
+                  <strong>Cáceres/MT</strong>
+                  <span>Evento Y — 20:00</span>
+                </div>
+                <a class="show__link" href="#" target="_blank" rel="noopener">Detalhes</a>
+              </div>
             </div>
-            <div class="info">
-              <span class="info__k">Local</span>
-              <span class="info__v" id="nextShowPlace">—</span>
-            </div>
-            <div class="info">
-              <span class="info__k">Cidade</span>
-              <span class="info__v" id="nextShowCity">—</span>
-            </div>
 
-            <a class="btn btn--full" href="#contato">Quero a SU7 no meu evento</a>
-            <p class="tiny">* Datas sujeitas a disponibilidade e logística.</p>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </main>
-
-  <!-- Sobre -->
-  <section id="sobre" class="section">
-    <div class="container">
-      <div class="section__head">
-        <h2>Sobre a banda</h2>
-        <p>
-          A SU7 entrega um show moderno, com identidade, setlist redondo e experiência em eventos
-          corporativos, casamentos, formaturas e festas.
-        </p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="panel">
-          <h3>O que você recebe</h3>
-          <ul class="list">
-            <li>✅ Show com dinâmica e presença de palco</li>
-            <li>✅ Setlist atualizado + clássicos que todo mundo canta</li>
-            <li>✅ Pontualidade, organização e profissionalismo</li>
-            <li>✅ Rider técnico e opções de estrutura</li>
-            <li>✅ Conteúdo para divulgação (fotos, cards, vídeo)</li>
-          </ul>
-          <div class="spacer"></div>
-          <a class="btn btn--ghost" href="#contato">Falar com a produção</a>
-        </div>
-
-        <div class="panel panel--media">
-          <!-- Troque a imagem abaixo pela sua (assets/img/banda.jpg) -->
-          <img class="media" src="assets/img/banda.jpg" alt="Foto da Banda SU7 no palco" />
-          <div class="overlay">
-            <div class="overlay__title">Show que levanta o público</div>
-            <div class="overlay__sub">Experiência, ritmo e entrega.</div>
-          </div>
+            <p class="muted">
+              Quer sua cidade aqui? <a href="#contato">Fale com a produção</a>.
+            </p>
+          </aside>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Shows -->
-  <section id="shows" class="section section--alt">
-    <div class="container">
-      <div class="section__head">
-        <h2>Agenda de shows</h2>
-        <p>Datas confirmadas e próximas apresentações.</p>
-      </div>
-
-      <div class="table">
-        <div class="table__row table__row--head">
-          <div>Data</div>
-          <div>Evento</div>
-          <div>Cidade</div>
-          <div>Status</div>
+    <!-- Lançamento -->
+    <section class="section section--dark" id="lancamento">
+      <div class="container">
+        <div class="section__head">
+          <h2>Último lançamento</h2>
+          <p>Ouça agora e adicione na sua playlist.</p>
         </div>
 
-        <!-- Edite as linhas abaixo -->
-        <div class="table__row">
-          <div class="mono">2026-02-15</div>
-          <div>Evento Privado</div>
-          <div>Cuiabá/MT</div>
-          <div><span class="tag tag--ok">Confirmado</span></div>
-        </div>
-        <div class="table__row">
-          <div class="mono">2026-03-01</div>
-          <div>Festa de Aniversário</div>
-          <div>Cáceres/MT</div>
-          <div><span class="tag">Pré-reserva</span></div>
-        </div>
-        <div class="table__row">
-          <div class="mono">2026-03-20</div>
-          <div>Evento Corporativo</div>
-          <div>Várzea Grande/MT</div>
-          <div><span class="tag tag--ok">Confirmado</span></div>
-        </div>
-      </div>
-
-      <div class="note">
-        Quer reservar uma data? <a href="#contato">Fale com a produção</a>.
-      </div>
-    </div>
-  </section>
-
-  <!-- Música -->
-  <section id="musica" class="section">
-    <div class="container">
-      <div class="section__head">
-        <h2>Música & Vídeos</h2>
-        <p>Ouça e assista. Troque os links pelos seus.</p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="panel">
-          <h3>Spotify</h3>
-          <p class="muted">Cole aqui o embed do seu artista/playlist.</p>
-          <div class="embed">
-            <!-- Exemplo: substitua pelo iframe do Spotify -->
-            <div class="embed__placeholder">
-              Cole aqui o iframe do Spotify (ou deixe vazio por enquanto).
+        <div class="grid grid--2">
+          <div class="media-card">
+            <img src="assets/img/capa-single.jpg" alt="Capa do single" />
+            <div class="media-card__meta">
+              <strong>NOME DA MÚSICA</strong>
+              <span>Single • 2026</span>
             </div>
           </div>
-        </div>
 
-        <div class="panel">
-          <h3>YouTube</h3>
-          <p class="muted">Vídeo ao vivo, clipe ou apresentação.</p>
-          <div class="embed">
-            <!-- Exemplo: substitua pelo seu vídeo -->
-            <iframe
-              width="560" height="315"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
+          <div class="card">
+            <h3>Links oficiais</h3>
+            <p class="muted">
+              Substitua os links abaixo pelos seus perfis reais.
+            </p>
+
+            <div class="platforms">
+              <a class="platform" href="#" target="_blank" rel="noopener" aria-label="Spotify">
+                <img src="assets/img/icon-spotify.svg" alt="" />
+                <span>Spotify</span>
+              </a>
+              <a class="platform" href="#" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="assets/img/icon-youtube.svg" alt="" />
+                <span>YouTube</span>
+              </a>
+              <a class="platform" href="#" target="_blank" rel="noopener" aria-label="Deezer">
+                <img src="assets/img/icon-deezer.svg" alt="" />
+                <span>Deezer</span>
+              </a>
+              <a class="platform" href="#" target="_blank" rel="noopener" aria-label="Apple Music">
+                <img src="assets/img/icon-applemusic.svg" alt="" />
+                <span>Apple Music</span>
+              </a>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn--primary" href="#midias">Ver redes</a>
+              <button class="btn btn--ghost" id="copyPresskit" type="button">Copiar link do presskit</button>
+            </div>
+
+            <p class="tiny muted" id="copyMsg" aria-live="polite"></p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Galeria -->
-  <section id="galeria" class="section section--alt">
-    <div class="container">
-      <div class="section__head">
-        <h2>Galeria</h2>
-        <p>Fotos de palco e bastidores. Troque pelos seus arquivos em <span class="mono">assets/img/</span>.</p>
-      </div>
-
-      <div class="gallery">
-        <img src="assets/img/g1.jpg" alt="Banda SU7 - foto 1" loading="lazy" />
-        <img src="assets/img/g2.jpg" alt="Banda SU7 - foto 2" loading="lazy" />
-        <img src="assets/img/g3.jpg" alt="Banda SU7 - foto 3" loading="lazy" />
-        <img src="assets/img/g4.jpg" alt="Banda SU7 - foto 4" loading="lazy" />
-        <img src="assets/img/g5.jpg" alt="Banda SU7 - foto 5" loading="lazy" />
-        <img src="assets/img/g6.jpg" alt="Banda SU7 - foto 6" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Contato -->
-  <section id="contato" class="section">
-    <div class="container">
-      <div class="section__head">
-        <h2>Contato & Orçamentos</h2>
-        <p>Respondo rápido. Diga data, cidade, tipo de evento e duração do show.</p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="panel">
-          <h3>Fale direto</h3>
-          <div class="contacts">
-            <a class="contact" href="https://wa.me/5599999999999" target="_blank" rel="noreferrer">
-              <span class="contact__k">WhatsApp</span>
-              <span class="contact__v">(99) 99999-9999</span>
-            </a>
-            <a class="contact" href="mailto:contato@bandasu7.com.br">
-              <span class="contact__k">E-mail</span>
-              <span class="contact__v">contato@bandasu7.com.br</span>
-            </a>
-            <a class="contact" href="https://instagram.com/" target="_blank" rel="noreferrer">
-              <span class="contact__k">Instagram</span>
-              <span class="contact__v">@bandasu7</span>
-            </a>
-          </div>
-
-          <div class="spacer"></div>
-          <div class="mini">
-            <div class="mini__t">Rider técnico</div>
-            <div class="mini__p">Disponível mediante solicitação. Estrutura de som/luz sob demanda.</div>
-          </div>
+    <!-- Mídias / Redes -->
+    <section class="section" id="midias">
+      <div class="container">
+        <div class="section__head">
+          <h2>Nossas plataformas digitais</h2>
+          <p>Siga, ouça e assista — tudo pelos canais oficiais.</p>
         </div>
 
-        <div class="panel">
-          <h3>Formulário</h3>
-          <form class="form" id="contactForm">
+        <div class="socials">
+          <a class="social" href="#" target="_blank" rel="noopener">
+            <img src="assets/img/icon-instagram.svg" alt="" />
+            <span>Instagram</span>
+          </a>
+          <a class="social" href="#" target="_blank" rel="noopener">
+            <img src="assets/img/icon-facebook.svg" alt="" />
+            <span>Facebook</span>
+          </a>
+          <a class="social" href="#" target="_blank" rel="noopener">
+            <img src="assets/img/icon-tiktok.svg" alt="" />
+            <span>TikTok</span>
+          </a>
+          <a class="social" href="#" target="_blank" rel="noopener">
+            <img src="assets/img/icon-youtube.svg" alt="" />
+            <span>YouTube</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section section--dark" id="contato">
+      <div class="container">
+        <div class="section__head">
+          <h2>Leve a banda para a sua cidade</h2>
+          <p>Preencha o formulário e a produção retorna com disponibilidade e valores.</p>
+        </div>
+
+        <form class="form" id="contactForm">
+          <div class="form__row">
             <label>
               <span>Nome</span>
-              <input name="nome" placeholder="Seu nome" required />
+              <input name="nome" type="text" placeholder="Seu nome" required />
             </label>
 
             <label>
               <span>WhatsApp</span>
-              <input name="whats" placeholder="(99) 99999-9999" required />
+              <input name="whatsapp" type="tel" placeholder="(65) 9xxxx-xxxx" required />
+            </label>
+          </div>
+
+          <div class="form__row">
+            <label>
+              <span>E-mail</span>
+              <input name="email" type="email" placeholder="seuemail@dominio.com" required />
             </label>
 
             <label>
-              <span>Data do evento</span>
-              <input name="data" type="date" required />
+              <span>Cidade/UF</span>
+              <input name="cidade" type="text" placeholder="Cuiabá/MT" required />
             </label>
+          </div>
 
-            <label>
-              <span>Cidade</span>
-              <input name="cidade" placeholder="Cuiabá/MT" required />
-            </label>
+          <label>
+            <span>Mensagem</span>
+            <textarea name="mensagem" rows="4" placeholder="Fale sobre o evento, data pretendida e local."></textarea>
+          </label>
 
-            <label class="full">
-              <span>Mensagem</span>
-              <textarea name="msg" rows="5" placeholder="Tipo de evento, horário, duração, local..." required></textarea>
-            </label>
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit">Enviar</button>
+            <p class="tiny muted" id="formMsg" aria-live="polite"></p>
+          </div>
 
-            <button class="btn btn--full" type="submit">Enviar no WhatsApp</button>
-            <p class="tiny">* O envio abre o WhatsApp com a mensagem pronta.</p>
-          </form>
-        </div>
+          <p class="tiny muted">
+            Dica: se você já tiver um e-mail de produção, dá pra trocar o envio via WhatsApp/Email no <code>main.js</code>.
+          </p>
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer__row">
+    <div class="container footer__inner">
       <div class="footer__left">
-        <div class="brand brand--footer">
-          <span class="brand__mark">SU7</span>
-          <span class="brand__name">Banda</span>
-        </div>
-        <div class="tiny">© <span id="year"></span> Banda SU7. Todos os direitos reservados.</div>
+        <img src="assets/img/logo.png" alt="Logo da banda" class="footer__logo" />
+        <p class="tiny muted">© <span id="year"></span> SUA BANDA — todos os direitos reservados.</p>
       </div>
 
       <div class="footer__right">
-        <a href="#home">Topo</a>
-        <a href="#shows">Agenda</a>
-        <a href="#contato">Contratar</a>
+        <a href="#top">Topo</a>
+        <a href="#tour">Tour</a>
+        <a href="#contato">Contato</a>
       </div>
     </div>
   </footer>
-
-  <!-- WhatsApp floating button -->
-  <a class="wa" href="https://wa.me/5599999999999" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
-    <span>WhatsApp</span>
-  </a>
 
   <script src="assets/js/main.js"></script>
 </body>
