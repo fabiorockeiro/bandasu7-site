@@ -712,3 +712,49 @@ body.menu-open .nav{
     justify-content:center;
   }
 }
+/* ===== Músicas (3 empilhadas) + Live (lado direito) ===== */
+.music-live{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 14px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.music-live__left{
+  display:grid;
+  gap: 14px;
+}
+
+.music-live__right{
+  display:block;
+}
+
+/* Spotify menor pra caber 3 em coluna sem ficar gigante */
+.embed--spotify-sm{
+  padding: 14px 14px 0; /* mantém seu padrão de card */
+}
+
+/* Vídeo “alto” e responsivo (sem travar altura fixa) */
+.embed--video-tall{
+  aspect-ratio: 16 / 10; /* mais “alto” que 16/9 */
+}
+
+/* Opcional: deixa o vídeo “acompanhar” ao rolar (desktop) */
+.media-card--sticky{
+  position: sticky;
+  top: calc(var(--headerH) + 14px);
+}
+
+/* Responsivo */
+@media (max-width: 980px){
+  .music-live{
+    grid-template-columns: 1fr;
+  }
+  .media-card--sticky{
+    position: static;
+  }
+  .embed--video-tall{
+    aspect-ratio: 16 / 9;
+  }
+}
