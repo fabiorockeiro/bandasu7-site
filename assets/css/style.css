@@ -918,7 +918,7 @@ body.menu-open .nav{
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 12 / 16;
   object-fit: cover;
   cursor: zoom-in;
 }
@@ -1024,16 +1024,21 @@ body.menu-open .nav{
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   gap: 16px;
-  align-items: start;
+  align-items: center;
+}
+.media-agendas__left{
+  width: 766px;
 }
 
 .media-agendas__left,
 .media-agendas__right{
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--radius2);
-  box-shadow: var(--shadow);
   padding: 22px;
-  background: rgba(0,0,0,.22);
+}
+.media-agendas__right{
+  width: 300px;
+  height: 400px;
+  align-content: center;
+
 }
 
 .agenda-list{

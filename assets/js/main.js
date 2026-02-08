@@ -219,7 +219,7 @@
   // 1) tenta assets/img/Agenda-00X.png
   // 2) fallback: ./Agenda-00X.png
   const candidates = (i) => ([
-    `assets/img/Agenda-${String(i).padStart(3, "0")}.png`,
+    `assets/img/agenda/Agenda-${String(i).padStart(3, "0")}.png`,
     `Agenda-${String(i).padStart(3, "0")}.png`
   ]);
 
