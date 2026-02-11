@@ -214,7 +214,7 @@
   if(!track || !dotsWrap) return;
 
   // Ajuste aqui se você mudar a quantidade inicial
-  const MAX = 5;
+  const MAX = 6;
 
   // Onde suas imagens estão:
   // 1) tenta assets/img/Agenda-00X.png
