@@ -213,9 +213,6 @@
   const dotsWrap = document.getElementById("agendaDots");
   if(!track || !dotsWrap) return;
 
-  // Ajuste aqui se você mudar a quantidade inicial
-  const MAX = 6;
-
   // Onde suas imagens estão:
   // 1) tenta assets/img/Agenda-00X.png
   // 2) fallback: ./Agenda-00X.png
@@ -342,39 +339,65 @@
     return null;
   }
 
-  (async function build(){
-    for(let i=1;i<=MAX;i++){
-      const src = await resolveSrc(i);
-      if(src){
-        addSlide(src);
-        addDot();
-      }
+(async function build(){
+  // ===== CONFIG "INFINITO" =====
+  // Segurança: não deixa o script testar infinitamente se algo der errado
+  const HARD_CAP = 500;          // até Agenda-500 (aumente se quiser)
+  const MISS_LIMIT = 8;          // para quando achar 8 números seguidos inexistentes
+  let missStreak = 0;
+
+  // coleta índices existentes: [1,2,5,7...]
+  const found = [];
+
+  for (let i = 1; i <= HARD_CAP; i++) {
+    const src = await resolveSrc(i);
+    if (src) {
+      found.push(i);
+      missStreak = 0;
+    } else {
+      missStreak++;
+      if (missStreak >= MISS_LIMIT) break;
     }
+  }
 
-    // navegação
-    const prevBtn = document.querySelector(".agenda-nav--prev");
-    const nextBtn = document.querySelector(".agenda-nav--next");
-    if(prevBtn) prevBtn.addEventListener("click", () => { prev(); start(); });
-    if(nextBtn) nextBtn.addEventListener("click", () => { next(); start(); });
+  // Se não encontrou nenhuma, mostra mensagem
+  if (found.length === 0) {
+    track.innerHTML = `<div style="padding:16px;opacity:.8">Sem imagens de agenda ainda.</div>`;
+    dotsWrap.style.display = "none";
+    return;
+  }
 
-    // hover pausa autoplay
-    const carousel = document.querySelector(".agenda-carousel");
-    if(carousel){
-      carousel.addEventListener("mouseenter", stop);
-      carousel.addEventListener("mouseleave", start);
-      carousel.addEventListener("focusin", stop);
-      carousel.addEventListener("focusout", start);
+  // Ordena decrescente (maiores primeiro): 12, 11, 10...
+  found.sort((a, b) => b - a);
+
+  // Monta slides e dots nessa ordem
+  for (const i of found) {
+    const src = await resolveSrc(i); // resolve de novo para pegar o caminho final
+    if (src) {
+      addSlide(src);
+      addDot();
     }
+  }
 
-    // se não encontrou nenhuma imagem, esconde o bloco de dots e track
-    if(slides.length === 0){
-      track.innerHTML = `<div style="padding:16px;opacity:.8">Sem imagens de agenda ainda.</div>`;
-      dotsWrap.style.display = "none";
-      return;
-    }
+  // navegação
+  const prevBtn = document.querySelector(".agenda-nav--prev");
+  const nextBtn = document.querySelector(".agenda-nav--next");
+  if (prevBtn) prevBtn.addEventListener("click", () => { prev(); start(); });
+  if (nextBtn) nextBtn.addEventListener("click", () => { next(); start(); });
 
-    index = 0;
-    setTransform();
-    start();
-  })();
+  // hover/foco pausa autoplay
+  const carousel = document.querySelector(".agenda-carousel");
+  if (carousel) {
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+  }
+
+  index = 0;
+  setTransform();
+  start();
+})();
+
+
 })();
