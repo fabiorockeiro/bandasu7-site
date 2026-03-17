@@ -235,7 +235,16 @@
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Integrantes</h2>
-          <p class="section-text">Formação SU7 — siga também os perfis individuais.</p>
+          <p class="section-text section-text--members">Conhe&ccedil;a a trajet&oacute;ria dos integrantes da SU7.</p>
+        </div>
+
+        <div class="members-carousel" id="membersCarousel" aria-roledescription="carousel"
+          aria-label="Mini biografias dos integrantes da SU7">
+          <div class="members-topbar">
+            <div class="members-tabs" id="memberTabs" role="tablist" aria-label="Selecionar integrante"></div>
+          </div>
+
+          <div class="members-shell" id="memberPanelShell"></div>
         </div>
 
         <div class="members-grid">
@@ -243,7 +252,7 @@
             <div class="member-photo" style="background-image:url('assets/img/Max-001.jpg');"></div>
             <div class="member-meta">
               <h3>Max</h3>
-              <p>🎙️ Voz</p>
+              <p>Voz</p>
               <a class="member-ig" href="https://www.instagram.com/maxxvoz/" target="_blank"
                 rel="noreferrer noopener">@maxxvoz</a>
             </div>
@@ -253,7 +262,7 @@
             <div class="member-photo" style="background-image:url('assets/img/Davi-001.jpg');"></div>
             <div class="member-meta">
               <h3>Davi</h3>
-              <p>🎸 Baixo</p>
+              <p>Baixo</p>
               <a class="member-ig" href="https://www.instagram.com/davi.su7/" target="_blank"
                 rel="noreferrer noopener">@davi.su7</a>
             </div>
@@ -263,7 +272,7 @@
             <div class="member-photo" style="background-image:url('assets/img/Djow-001.jpg');"></div>
             <div class="member-meta">
               <h3>Djow Kielek</h3>
-              <p>🥁 Bateria</p>
+              <p>Bateria</p>
               <a class="member-ig" href="https://www.instagram.com/djow_kielek/" target="_blank"
                 rel="noreferrer noopener">@djow_kielek</a>
             </div>
@@ -273,7 +282,7 @@
             <div class="member-photo" style="background-image:url('assets/img/Jonas-002.jpg');"></div>
             <div class="member-meta">
               <h3>Jonas</h3>
-              <p>🎹 Teclado</p>
+              <p>Teclado</p>
               <a class="member-ig" href="https://www.instagram.com/jonassouzamusic/" target="_blank"
                 rel="noreferrer noopener">@jonassouzamusic</a>
             </div>
@@ -282,8 +291,8 @@
           <article class="member-card">
             <div class="member-photo" style="background-image:url('assets/img/Fabio-001.jpg');"></div>
             <div class="member-meta">
-              <h3>Fábio Rockeiro</h3>
-              <p>🎸 Guitarra</p>
+              <h3>F&aacute;bio Rockeiro</h3>
+              <p>Guitarra</p>
               <a class="member-ig" href="https://www.instagram.com/brincarderock/" target="_blank"
                 rel="noreferrer noopener">@brincarderock</a>
             </div>
@@ -293,12 +302,12 @@
     </section>
 
     <!-- SOBRE (bio) -->
-    <!-- GALERIA (mosaico criativo + lightbox) -->
+    <!-- GALERIA -->
     <section class="section" id="galeria">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Galeria</h2>
-          <p class="section-text">Fotos em vários cortes/tamanhos — passe o mouse e clique para abrir.</p>
+          <p class="section-text">Fotos em v&aacute;rios cortes e tamanhos. Passe o mouse e clique para abrir.</p>
         </div>
 
         <div class="mosaic" id="mosaic"></div>
@@ -384,10 +393,10 @@
     </footer>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lb-close" type="button" aria-label="Fechar" id="lbClose">×</button>
-      <button class="lb-nav lb-prev" type="button" aria-label="Anterior" id="lbPrev">‹</button>
-      <button class="lb-nav lb-next" type="button" aria-label="Próximo" id="lbNext">›</button>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+      <button class="lb-close" type="button" aria-label="Fechar" id="lbClose">&times;</button>
+      <button class="lb-nav lb-prev" type="button" aria-label="Anterior" id="lbPrev">&lsaquo;</button>
+      <button class="lb-nav lb-next" type="button" aria-label="Pr&oacute;ximo" id="lbNext">&rsaquo;</button>
       <img class="lb-img" id="lbImg" alt="Foto da galeria SU7" />
       <div class="lb-cap" id="lbCap"></div>
     </div>
