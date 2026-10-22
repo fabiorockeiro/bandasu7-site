@@ -1,68 +1,256 @@
-(function () {
+(() => {
+  "use strict";
+
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  // Responsive derivatives keep the original files available from the viewer.
+  const imageWidths = {
+    "assets/img/Davi-001.jpg": 853,
+    "assets/img/Davi-002.jpg": 853,
+    "assets/img/Davi-003.jpg": 853,
+    "assets/img/Djow-002.jpg": 853,
+    "assets/img/img-003.jpg": 730,
+    "assets/img/jonas-001.jpg": 853,
+    "assets/img/Max-001.jpg": 853,
+    "assets/img/mmm2-1024x530.png": 500,
+    "assets/img/agendas/Agenda-013.png": 896,
+  };
+  function responsiveBase(src) {
+    return src
+      .replace("assets/img/", "assets/img/responsive/")
+      .replace(/\.(\w+)$/, "-$1");
+  }
+  function setResponsiveImage(img, original, sizes) {
+    const base = responsiveBase(original);
+    img.sizes = sizes;
+    const fullWidth = imageWidths[original] || 960;
+    img.srcset =
+      base +
+      "-480.webp " +
+      Math.min(480, fullWidth) +
+      "w, " +
+      base +
+      "-960.webp " +
+      Math.min(960, fullWidth) +
+      "w";
+    img.src = base + "-480.webp";
+  }
+
+  // Silent stage loop: responsive source, explicit pause and a still-image fallback.
+  const heroVideo = document.getElementById("heroVideo");
+  const videoToggle = document.getElementById("videoToggle");
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const connection = navigator.connection;
+  let manuallyPaused =
+    motion.matches || Boolean(connection && connection.saveData);
+  let heroVisible = true;
+  let featurePlaying = false;
+  function videoLabel(playing) {
+    videoToggle.querySelector("[data-video-label]").textContent = playing
+      ? "Pausar vídeo"
+      : "Reproduzir vídeo";
+    videoToggle.querySelector("[data-video-icon]").textContent = playing
+      ? "Ⅱ"
+      : "▶";
+    videoToggle.setAttribute(
+      "aria-label",
+      playing
+        ? "Pausar vídeo de fundo do show"
+        : "Reproduzir vídeo de fundo do show",
+    );
+  }
+  function loadHero() {
+    if (heroVideo.hasAttribute("src")) return;
+    heroVideo.src = window.matchMedia("(max-width: 760px)").matches
+      ? heroVideo.dataset.mobileSrc
+      : heroVideo.dataset.desktopSrc;
+    heroVideo.muted = true;
+  }
+  function syncHero() {
+    if (
+      manuallyPaused ||
+      !heroVisible ||
+      document.hidden ||
+      featurePlaying ||
+      !document.querySelector(".reel").paused
+    ) {
+      heroVideo.pause();
+      return;
+    }
+    loadHero();
+    const playing = heroVideo.play();
+    if (playing) playing.catch(() => videoLabel(false));
+  }
+  heroVideo.addEventListener("playing", () => {
+    heroVideo.classList.add("is-playing");
+    videoLabel(true);
+  });
+  heroVideo.addEventListener("pause", () => videoLabel(false));
+  heroVideo.addEventListener("error", () => {
+    heroVideo.classList.remove("is-playing");
+    videoLabel(false);
+  });
+  videoToggle.hidden = false;
+  videoLabel(false);
+  videoToggle.addEventListener("click", () => {
+    manuallyPaused = !heroVideo.paused;
+    if (!manuallyPaused) featurePlaying = false;
+    syncHero();
+  });
+  motion.addEventListener("change", () => {
+    manuallyPaused = motion.matches;
+    syncHero();
+  });
+  document.addEventListener("visibilitychange", syncHero);
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      heroVisible = entries[0].isIntersecting;
+      syncHero();
+    },
+    { threshold: 0.05 },
+  );
+  heroObserver.observe(document.getElementById("home"));
+  syncHero();
+
+  // The official track loads only on request, leaving the opening focused on the show.
+  const featuredPlay = document.getElementById("playFeatured");
+  featuredPlay.addEventListener("click", () => {
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/bHc_WxYSxEs?autoplay=1&rel=0";
+    iframe.title = "Filho de Davi — Banda SU7";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    document.getElementById("featuredPlayer").replaceChildren(iframe);
+    featurePlaying = true;
+    heroVideo.pause();
+    iframe.focus();
+  });
+  const demo = document.querySelector(".reel");
+  demo.addEventListener("play", () => heroVideo.pause());
+  demo.addEventListener("pause", syncHero);
+
+  // Navigation: keep focus predictable on mobile and follow the visible section.
   const hamburger = document.querySelector("[data-hamburger]");
   const nav = document.querySelector("[data-nav]");
-
-  function setExpanded(isOpen) {
-    if (!hamburger) return;
-    hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  }
-
-  function closeMenu() {
+  function closeMenu(restoreFocus = false) {
+    const wasOpen = document.body.classList.contains("menu-open");
     document.body.classList.remove("menu-open");
-    setExpanded(false);
-    if (hamburger) hamburger.focus();
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "Abrir menu");
+    if (wasOpen && restoreFocus) hamburger.focus();
   }
+  hamburger.addEventListener("click", () => {
+    const open = document.body.classList.toggle("menu-open");
+    hamburger.setAttribute("aria-expanded", String(open));
+    hamburger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    if (open) nav.querySelector("a").focus();
+  });
+  nav.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    const wasOpen = document.body.classList.contains("menu-open");
+    closeMenu();
+    if (wasOpen) {
+      const section = document.querySelector(link.hash);
+      section.setAttribute("tabindex", "-1");
+      section.focus({ preventScroll: true });
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target) && !hamburger.contains(event.target))
+      closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      document.body.classList.contains("menu-open")
+    ) {
+      closeMenu(true);
+    }
+  });
+  const mobile = window.matchMedia("(max-width: 760px)");
+  mobile.addEventListener("change", () => closeMenu());
 
-  function toggleMenu() {
-    const isOpen = document.body.classList.toggle("menu-open");
-    setExpanded(isOpen);
+  const links = [...nav.querySelectorAll(".nav-link")];
+  const sections = links.map((link) => document.querySelector(link.hash));
+  let scrollQueued = false;
+  function updateNavigation() {
+    const marker = document.querySelector(".site-header").offsetHeight + 80;
+    let current = sections[0];
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= marker) current = section;
+    });
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 4
+    ) {
+      current = sections[sections.length - 1];
+    }
+    links.forEach((link) => {
+      const active = link.hash === "#" + current.id;
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    scrollQueued = false;
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollQueued) {
+        scrollQueued = true;
+        requestAnimationFrame(updateNavigation);
+      }
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", updateNavigation);
+  updateNavigation();
 
-    if (isOpen && nav) {
-      const first = nav.querySelector("a");
-      if (first) setTimeout(() => first.focus(), 0);
+  // Event dates use the band's local timezone, independent of the visitor.
+  const dateParts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Cuiaba",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const part = (type) => dateParts.find((item) => item.type === type).value;
+  const today = [part("year"), part("month"), part("day")].join("-");
+  document.querySelectorAll("[data-event-date]").forEach((event) => {
+    const past = event.dataset.eventDate < today;
+    event.classList.toggle("is-past", past);
+    event.querySelector(".event-status").textContent = past
+      ? "JÁ ESTIVEMOS POR AQUI"
+      : event.dataset.eventDate === today
+        ? "É HOJE"
+        : "NA AGENDA";
+  });
+
+  // Keep previous events available without mixing them with upcoming dates.
+  const eventList = document.querySelector(".agenda-list");
+  const pastEvents = [...eventList.querySelectorAll(".is-past")];
+  if (pastEvents.length) {
+    const history = document.createElement("details");
+    history.className = "past-events";
+    const summary = document.createElement("summary");
+    summary.textContent = "Por onde já passamos";
+    const list = document.createElement("div");
+    list.setAttribute("role", "list");
+    list.append(...pastEvents);
+    history.append(summary, list);
+    eventList.after(history);
+    if (!eventList.querySelector(".agenda-item")) {
+      eventList.removeAttribute("role");
+      const empty = document.createElement("p");
+      empty.className = "agenda-empty";
+      empty.textContent =
+        "Novas datas em breve. Fale com a gente para levar a SU7 ao seu evento.";
+      eventList.append(empty);
     }
   }
-
-  if (hamburger) hamburger.addEventListener("click", toggleMenu);
-  if (nav) {
-    nav.addEventListener("click", (e) => {
-      const anchor = e.target.closest("a");
-      if (!anchor) return;
-      closeMenu();
-    });
-  }
-
-  document.addEventListener("click", (e) => {
-    if (!document.body.classList.contains("menu-open")) return;
-    const inNav = nav && nav.contains(e.target);
-    const inButton = hamburger && hamburger.contains(e.target);
-    if (!inNav && !inButton) closeMenu();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
-
-  const links = Array.from(document.querySelectorAll(".nav-link"))
-    .filter((anchor) => anchor.getAttribute("href") && anchor.getAttribute("href").startsWith("#"));
-  const targets = links
-    .map((anchor) => document.querySelector(anchor.getAttribute("href")))
-    .filter(Boolean);
-
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      links.forEach((link) => link.classList.remove("is-active"));
-      const id = "#" + entry.target.id;
-      const active = links.find((link) => link.getAttribute("href") === id);
-      if (active) active.classList.add("is-active");
-    });
-  }, { threshold: 0.6 });
-
-  targets.forEach((target) => obs.observe(target));
 
   const MEMBERS = [
     {
@@ -76,7 +264,7 @@
       instagramHandle: "@maxxvoz",
       accentFrom: "#ffb547",
       accentTo: "rgba(255,181,71,.20)",
-      bio: "Voz da SU7, Max une presen\u00e7a de palco, versatilidade e leitura musical ao repert\u00f3rio da banda. Como multi-instrumentista e professor, contribui com arranjos firmes e interpreta\u00e7\u00e3o consistente ao vivo."
+      bio: "Voz da SU7, Max une presen\u00e7a de palco, versatilidade e leitura musical ao repert\u00f3rio da banda. Como multi-instrumentista e professor, contribui com arranjos firmes e interpreta\u00e7\u00e3o consistente ao vivo.",
     },
     {
       id: "davi",
@@ -89,7 +277,7 @@
       instagramHandle: "@davi.su7",
       accentFrom: "#1a8cff",
       accentTo: "rgba(26,140,255,.20)",
-      bio: "Fundador e baixista da SU7, Davi sustenta a base musical da banda com precis\u00e3o e vis\u00e3o de conjunto. Seu trabalho ajuda a moldar a identidade sonora e a dire\u00e7\u00e3o do minist\u00e9rio desde a forma\u00e7\u00e3o."
+      bio: "Fundador e baixista da SU7, Davi sustenta a base musical da banda com precis\u00e3o e vis\u00e3o de conjunto. Seu trabalho ajuda a moldar a identidade sonora e a dire\u00e7\u00e3o do minist\u00e9rio desde a forma\u00e7\u00e3o.",
     },
     {
       id: "djow",
@@ -102,7 +290,7 @@
       instagramHandle: "@djow_kielek",
       accentFrom: "#ff7a3d",
       accentTo: "rgba(255,122,61,.20)",
-      bio: "Baterista da SU7 desde 2018, Djow Kielek soma experi\u00eancia em igreja, eventos e trabalhos com artistas da m\u00fasica gospel nacional. Sua pegada traz energia, controle e presen\u00e7a \u00e0 base r\u00edtmica da banda."
+      bio: "Baterista da SU7 desde 2018, Djow Kielek soma experi\u00eancia em igreja, eventos e trabalhos com artistas da m\u00fasica gospel nacional. Sua pegada traz energia, controle e presen\u00e7a \u00e0 base r\u00edtmica da banda.",
     },
     {
       id: "jonas",
@@ -115,7 +303,7 @@
       instagramHandle: "@jonassouzamusic",
       accentFrom: "#38d6d1",
       accentTo: "rgba(56,214,209,.18)",
-      bio: "Tecladista, pianista, produtor e diretor musical, Jonas Souza atua h\u00e1 mais de 15 anos no mercado e \u00e9 formado pelo Conservat\u00f3rio Carlos Gomes. Na SU7, contribui com arranjos, repert\u00f3rio e dire\u00e7\u00e3o musical."
+      bio: "Tecladista, pianista, produtor e diretor musical, Jonas Souza atua h\u00e1 mais de 15 anos no mercado e \u00e9 formado pelo Conservat\u00f3rio Carlos Gomes. Na SU7, contribui com arranjos, repert\u00f3rio e dire\u00e7\u00e3o musical.",
     },
     {
       id: "fabio",
@@ -128,269 +316,114 @@
       instagramHandle: "@brincarderock",
       accentFrom: "#2fca8b",
       accentTo: "rgba(47,202,139,.18)",
-      bio: "Guitarrista da SU7, F\u00e1bio Rockeiro adiciona textura, peso e identidade \u00e0s apresenta\u00e7\u00f5es da banda. Seu trabalho fortalece os arranjos ao vivo com personalidade e presen\u00e7a."
-    }
+      bio: "Guitarrista da SU7, F\u00e1bio Rockeiro adiciona textura, peso e identidade \u00e0s apresenta\u00e7\u00f5es da banda. Seu trabalho fortalece os arranjos ao vivo com personalidade e presen\u00e7a.",
+    },
   ];
 
-  function initMembersCarousel() {
-    const carousel = document.getElementById("membersCarousel");
-    const tabsWrap = document.getElementById("memberTabs");
-    const shell = document.getElementById("memberPanelShell");
-    if (!carousel || !tabsWrap || !shell) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const total = MEMBERS.length;
-    const AUTOPLAY_MS = 8000;
-    const tabs = [];
-
-    let reduceMotion = prefersReducedMotion.matches;
-    let index = 0;
-    let timer = null;
-    let swapTimer = null;
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    const panel = document.createElement("article");
-    panel.className = "member-panel";
-    panel.id = "memberPanel";
-    panel.setAttribute("role", "tabpanel");
-    panel.setAttribute("aria-atomic", "true");
-
-    const photoPane = document.createElement("div");
-    photoPane.className = "member-photo-pane";
-
-    const photo = document.createElement("img");
-    photo.decoding = "async";
-
-    const photoTag = document.createElement("div");
-    photoTag.className = "member-photo-tag";
-
-    const copy = document.createElement("div");
-    copy.className = "member-copy";
-
-    const eyebrow = document.createElement("div");
-    eyebrow.className = "member-eyebrow";
-    eyebrow.textContent = "Mini biografia";
-
-    const name = document.createElement("h3");
-    name.className = "member-name";
-
-    const role = document.createElement("div");
-    role.className = "member-role";
-
-    const bio = document.createElement("p");
-    bio.className = "member-bio";
-
-    const actions = document.createElement("div");
-    actions.className = "member-actions";
-
-    const link = document.createElement("a");
-    link.className = "member-link";
-    link.target = "_blank";
-    link.rel = "noreferrer noopener";
-
-    const linkLabel = document.createElement("span");
-    linkLabel.textContent = "Instagram";
-
-    const handle = document.createElement("span");
-    handle.className = "member-link__handle";
-
-    photoPane.appendChild(photo);
-    photoPane.appendChild(photoTag);
-
-    link.appendChild(linkLabel);
-    link.appendChild(handle);
-
-    actions.appendChild(link);
-    copy.appendChild(eyebrow);
-    copy.appendChild(name);
-    copy.appendChild(role);
-    copy.appendChild(bio);
-    copy.appendChild(actions);
-
-    panel.appendChild(photoPane);
-    panel.appendChild(copy);
-    shell.appendChild(panel);
-
-    function stop() {
-      if (timer) clearInterval(timer);
-      timer = null;
-    }
-
-    function start() {
-      stop();
-      if (reduceMotion || total <= 1) return;
-      timer = window.setInterval(() => {
-        renderMember(index + 1, "autoplay");
-      }, AUTOPLAY_MS);
-    }
-
-    function syncMotionPreference() {
-      reduceMotion = prefersReducedMotion.matches;
-      carousel.classList.toggle("is-reduced-motion", reduceMotion);
-      panel.setAttribute("aria-live", reduceMotion ? "polite" : "off");
-      if (reduceMotion) stop();
-      else start();
-    }
-
-    function applyMember(member) {
-      panel.style.setProperty("--member-accent-from", member.accentFrom);
-      panel.style.setProperty("--member-accent-to", member.accentTo);
-      photo.src = member.photo;
-      photo.alt = member.photoAlt;
-      photo.loading = index === 0 ? "eager" : "lazy";
-      photoTag.textContent = member.name;
-      name.textContent = member.name;
-      role.textContent = member.title;
-      bio.textContent = member.bio;
-      link.href = member.instagramUrl;
-      link.setAttribute("aria-label", `Instagram de ${member.name}`);
-      handle.textContent = member.instagramHandle;
-    }
-
-    function updateTabs(source) {
-      tabs.forEach((tab, tabIndex) => {
-        const active = tabIndex === index;
-        tab.classList.toggle("is-active", active);
-        tab.setAttribute("aria-selected", active ? "true" : "false");
-        tab.tabIndex = active ? 0 : -1;
-
-        if (active) {
-          panel.setAttribute("aria-labelledby", tab.id);
-          if (source === "keyboard") tab.focus();
-        }
-      });
-    }
-
-    function renderMember(nextIndex, source) {
-      index = (nextIndex + total) % total;
-      updateTabs(source);
-
-      window.clearTimeout(swapTimer);
-
-      if (reduceMotion || source === "initial") {
-        panel.classList.remove("is-swapping");
-        applyMember(MEMBERS[index]);
-        return;
-      }
-
-      panel.classList.add("is-swapping");
-      swapTimer = window.setTimeout(() => {
-        applyMember(MEMBERS[index]);
-        requestAnimationFrame(() => {
-          panel.classList.remove("is-swapping");
-        });
-      }, 130);
-    }
-
-    MEMBERS.forEach((member, memberIndex) => {
-      const tab = document.createElement("button");
-      tab.type = "button";
-      tab.className = "member-tab";
-      tab.id = `member-tab-${member.id}`;
-      tab.setAttribute("role", "tab");
-      tab.setAttribute("aria-controls", panel.id);
-      tab.setAttribute("aria-label", `Ver biografia de ${member.name}`);
-      tab.style.setProperty("--member-tab-accent", member.accentFrom);
-      tab.style.setProperty("--member-tab-accent-soft", member.accentTo);
-
-      const tabName = document.createElement("span");
-      tabName.className = "member-tab__name";
-      tabName.textContent = member.name.split(" ")[0];
-
-      const tabRole = document.createElement("span");
-      tabRole.className = "member-tab__role";
-      tabRole.textContent = member.navRole;
-
-      tab.appendChild(tabName);
-      tab.appendChild(tabRole);
-
-      tab.addEventListener("click", () => {
-        renderMember(memberIndex, "manual");
-        start();
-      });
-
-      tabsWrap.appendChild(tab);
-      tabs.push(tab);
+  // Deliberate selection keeps biographies readable without automatic rotation.
+  const tabsWrap = document.getElementById("memberTabs");
+  const shell = document.getElementById("memberPanelShell");
+  const panel = document.createElement("article");
+  panel.className = "member-panel";
+  panel.id = "memberPanel";
+  panel.setAttribute("role", "tabpanel");
+  panel.tabIndex = 0;
+  panel.innerHTML =
+    '<div class="member-photo-pane"><img loading="lazy" decoding="async" /><div class="member-photo-tag"></div></div><div class="member-copy"><div class="member-eyebrow">Conheça o integrante</div><h3 class="member-name"></h3><div class="member-role"></div><p class="member-bio"></p><div class="member-actions"><a class="member-link" target="_blank" rel="noopener noreferrer"><span>Instagram ↗</span><span class="member-link__handle"></span></a></div></div>';
+  shell.append(panel);
+  let memberIndex = 0;
+  const tabs = MEMBERS.map((member, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "member-tab";
+    button.id = "member-tab-" + member.id;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-controls", panel.id);
+    button.setAttribute("aria-label", "Ver biografia de " + member.name);
+    const name = document.createElement("span");
+    name.className = "member-tab__name";
+    name.textContent = member.name.split(" ")[0];
+    const role = document.createElement("span");
+    role.className = "member-tab__role";
+    role.textContent = member.navRole;
+    button.append(name, role);
+    button.addEventListener("click", () => selectMember(index));
+    tabsWrap.append(button);
+    return button;
+  });
+  function selectMember(nextIndex, moveFocus = false) {
+    memberIndex = (nextIndex + MEMBERS.length) % MEMBERS.length;
+    const member = MEMBERS[memberIndex];
+    tabs.forEach((tab, index) => {
+      const active = index === memberIndex;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
     });
-
-    carousel.classList.add("is-ready");
-
-    carousel.addEventListener("mouseenter", stop);
-    carousel.addEventListener("mouseleave", start);
-    carousel.addEventListener("focusin", stop);
-    carousel.addEventListener("focusout", () => {
-      window.setTimeout(() => {
-        if (!carousel.contains(document.activeElement)) start();
-      }, 0);
-    });
-
-    tabsWrap.addEventListener("keydown", (e) => {
-      const focusedIndex = tabs.indexOf(document.activeElement);
-      if (focusedIndex === -1) return;
-
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-        e.preventDefault();
-        renderMember(focusedIndex + 1, "keyboard");
-        start();
-      }
-
-      if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-        e.preventDefault();
-        renderMember(focusedIndex - 1, "keyboard");
-        start();
-      }
-
-      if (e.key === "Home") {
-        e.preventDefault();
-        renderMember(0, "keyboard");
-        start();
-      }
-
-      if (e.key === "End") {
-        e.preventDefault();
-        renderMember(total - 1, "keyboard");
-        start();
-      }
-    });
-
-    shell.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      stop();
-    }, { passive: true });
-
-    shell.addEventListener("touchend", (e) => {
-      if (!touchStartX && !touchStartY) {
-        start();
-        return;
-      }
-
-      const touch = e.changedTouches[0];
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
-
-      if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-        renderMember(deltaX < 0 ? index + 1 : index - 1, "manual");
-      }
-
-      touchStartX = 0;
-      touchStartY = 0;
-      start();
-    }, { passive: true });
-
-    if (typeof prefersReducedMotion.addEventListener === "function") {
-      prefersReducedMotion.addEventListener("change", syncMotionPreference);
-    } else if (typeof prefersReducedMotion.addListener === "function") {
-      prefersReducedMotion.addListener(syncMotionPreference);
-    }
-
-    renderMember(0, "initial");
-    syncMotionPreference();
+    panel.setAttribute("aria-labelledby", tabs[memberIndex].id);
+    const photo = panel.querySelector("img");
+    setResponsiveImage(
+      photo,
+      member.photo,
+      "(max-width: 760px) calc(100vw - 40px), 510px",
+    );
+    photo.alt = member.photoAlt;
+    panel.querySelector(".member-photo-tag").textContent = member.name;
+    panel.querySelector(".member-name").textContent = member.name;
+    panel.querySelector(".member-role").textContent = member.title;
+    panel.querySelector(".member-bio").textContent = member.bio;
+    panel.querySelector(".member-link").href = member.instagramUrl;
+    panel
+      .querySelector(".member-link")
+      .setAttribute("aria-label", "Instagram de " + member.name);
+    panel.querySelector(".member-link__handle").textContent =
+      member.instagramHandle;
+    if (moveFocus) tabs[memberIndex].focus();
   }
-
-  initMembersCarousel();
+  tabsWrap.addEventListener("keydown", (event) => {
+    const index = tabs.indexOf(document.activeElement);
+    if (index === -1) return;
+    const keys = {
+      ArrowRight: index + 1,
+      ArrowLeft: index - 1,
+      Home: 0,
+      End: MEMBERS.length - 1,
+    };
+    if (event.key in keys) {
+      event.preventDefault();
+      selectMember(keys[event.key], true);
+    }
+  });
+  let touch = null;
+  shell.addEventListener(
+    "touchstart",
+    (event) => {
+      touch = event.touches.length === 1 ? event.touches[0] : null;
+    },
+    { passive: true },
+  );
+  shell.addEventListener(
+    "touchend",
+    (event) => {
+      if (!touch) return;
+      const dx = event.changedTouches[0].clientX - touch.clientX;
+      const dy = event.changedTouches[0].clientY - touch.clientY;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        selectMember(memberIndex + (dx < 0 ? 1 : -1));
+      }
+      touch = null;
+    },
+    { passive: true },
+  );
+  shell.addEventListener(
+    "touchcancel",
+    () => {
+      touch = null;
+    },
+    { passive: true },
+  );
+  selectMember(0);
+  document.getElementById("membersCarousel").classList.add("is-ready");
 
   const GALLERY = [
     { src: "assets/img/Trio-001.jpg", cap: "SU7 • Trio" },
@@ -419,303 +452,190 @@
     { src: "assets/img/img-001.jpg", cap: "SU7" },
     { src: "assets/img/img-002.jpg", cap: "SU7" },
     { src: "assets/img/img-003.jpg", cap: "SU7" },
-    { src: "assets/img/img-004.jpg", cap: "SU7" }
+    { src: "assets/img/img-004.jpg", cap: "SU7" },
   ];
 
+  // Lead with a consistent selection; every original photo remains available.
+  const featured = [
+    "Trio-001.jpg",
+    "Max-001.jpg",
+    "Fabio-001.jpg",
+    "Davi-001.jpg",
+    "Djow-001.jpg",
+    "Jonas-002.jpg",
+  ];
+  const gallery = [
+    ...featured.map((file) =>
+      GALLERY.find((item) => item.src.endsWith("/" + file)),
+    ),
+    ...GALLERY.filter(
+      (item) => !featured.some((file) => item.src.endsWith("/" + file)),
+    ),
+  ];
   const mosaic = document.getElementById("mosaic");
-  const spans = ["span-3x3", "span-4x3", "span-4x4", "span-6x4", "span-6x5"];
-  let lastGalleryTrigger = null;
-
-  function shuffle(arr) {
-    const clone = arr.slice();
-    for (let i = clone.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [clone[i], clone[j]] = [clone[j], clone[i]];
-    }
-    return clone;
+  const more = document.getElementById("galleryMore");
+  function addPhoto(item, index) {
+    const tile = document.createElement("button");
+    tile.type = "button";
+    tile.className = "tile";
+    tile.setAttribute("aria-label", "Ampliar foto: " + item.cap);
+    const img = document.createElement("img");
+    setResponsiveImage(
+      img,
+      item.src,
+      "(max-width: 760px) calc((100vw - 50px) / 2), (max-width: 1320px) 30vw, 390px",
+    );
+    img.alt = item.cap;
+    img.loading = "lazy";
+    img.decoding = "async";
+    const cap = document.createElement("span");
+    cap.className = "cap";
+    cap.textContent = item.cap;
+    tile.append(img, cap);
+    tile.addEventListener("click", () => openLightbox(gallery, index, tile));
+    mosaic.append(tile);
   }
-
-  let galleryOrder = shuffle(GALLERY);
-
-  function buildMosaic() {
-    if (!mosaic) return;
-    mosaic.innerHTML = "";
-
-    galleryOrder.forEach((item, idx) => {
-      const tile = document.createElement("button");
-      tile.type = "button";
-      tile.className = "tile " + spans[idx % spans.length];
-      tile.setAttribute("data-idx", String(idx));
-      tile.setAttribute("aria-label", `Abrir ${item.cap || "foto da SU7"}`);
-
-      const img = document.createElement("img");
-      img.loading = "lazy";
-      img.decoding = "async";
-      img.src = item.src;
-      img.alt = item.cap || "Foto SU7";
-
-      const cap = document.createElement("div");
-      cap.className = "cap";
-      cap.textContent = item.cap || "SU7";
-
-      tile.appendChild(img);
-      tile.appendChild(cap);
-      mosaic.appendChild(tile);
+  gallery.slice(0, 6).forEach(addPhoto);
+  more.hidden = false;
+  more.addEventListener("click", () => {
+    const expanded = more.getAttribute("aria-expanded") !== "true";
+    if (expanded && mosaic.children.length === 6)
+      gallery.slice(6).forEach((item, index) => addPhoto(item, index + 6));
+    [...mosaic.children].forEach((tile, index) => {
+      tile.hidden = !expanded && index >= 6;
     });
-  }
-
-  buildMosaic();
-
-  const lb = document.getElementById("lightbox");
-  const lbImg = document.getElementById("lbImg");
-  const lbCap = document.getElementById("lbCap");
-  const lbClose = document.getElementById("lbClose");
-  const lbPrev = document.getElementById("lbPrev");
-  const lbNext = document.getElementById("lbNext");
-
-  let current = 0;
-
-  function openLB(nextIndex) {
-    if (!lb || !lbImg || !galleryOrder.length) return;
-    const total = galleryOrder.length;
-    current = ((nextIndex % total) + total) % total;
-    lastGalleryTrigger = document.activeElement && typeof document.activeElement.focus === "function"
-      ? document.activeElement
-      : null;
-
-    const item = galleryOrder[current];
-    lbImg.src = item.src;
-    lbImg.alt = item.cap || "Foto SU7";
-    if (lbCap) lbCap.textContent = (item.cap || "SU7").toUpperCase();
-    lb.classList.add("is-open");
-    lb.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    if (lbClose) lbClose.focus();
-  }
-
-  function closeLB() {
-    if (!lb) return;
-    lb.classList.remove("is-open");
-    lb.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-
-    if (lastGalleryTrigger && typeof lastGalleryTrigger.focus === "function") {
-      lastGalleryTrigger.focus();
-    }
-  }
-
-  function go(step) {
-    if (!galleryOrder.length || !lbImg) return;
-    const total = galleryOrder.length;
-    current = (current + step + total) % total;
-    const item = galleryOrder[current];
-    lbImg.src = item.src;
-    lbImg.alt = item.cap || "Foto SU7";
-    if (lbCap) lbCap.textContent = (item.cap || "SU7").toUpperCase();
-  }
-
-  if (mosaic) {
-    mosaic.addEventListener("click", (e) => {
-      const tile = e.target.closest(".tile");
-      if (!tile) return;
-      const idx = Number(tile.getAttribute("data-idx") || "0");
-      openLB(idx);
-    });
-  }
-
-  if (lbClose) lbClose.addEventListener("click", closeLB);
-  if (lbPrev) lbPrev.addEventListener("click", () => go(-1));
-  if (lbNext) lbNext.addEventListener("click", () => go(1));
-
-  document.addEventListener("keydown", (e) => {
-    if (!lb || !lb.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeLB();
-    if (e.key === "ArrowLeft") go(-1);
-    if (e.key === "ArrowRight") go(1);
+    more.setAttribute("aria-expanded", String(expanded));
+    more.innerHTML = expanded
+      ? 'Mostrar menos fotos <span aria-hidden="true">−</span>'
+      : 'Ver todas as fotos <span aria-hidden="true">＋</span>';
+    if (expanded) mosaic.children[6].focus({ preventScroll: true });
+    else more.focus({ preventScroll: true });
   });
 
-  if (lb) {
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLB();
-    });
-  }
-})();
-
-// =========================
-// AGENDAS: carrossel + lightbox
-// =========================
-(function initAgendasCarousel(){
+  // Explicit asset count avoids probing missing files; update when adding posters.
+  const POSTER_COUNT = 13;
+  const posters = Array.from({ length: POSTER_COUNT }, (_, index) => ({
+    src:
+      "assets/img/agendas/Agenda-" +
+      String(POSTER_COUNT - index).padStart(3, "0") +
+      ".png",
+    cap: "SU7 · Cartaz de evento " + (POSTER_COUNT - index),
+  }));
   const track = document.getElementById("agendaTrack");
-  const dotsWrap = document.getElementById("agendaDots");
-  if(!track || !dotsWrap) return;
-
-  const candidates = (i) => ([
-    `assets/img/agendas/Agenda-${String(i).padStart(3, "0")}.png`,
-  ]);
-
-  let slides = [];
-  let index = 0;
-  let timer = null;
-  const AUTOPLAY_MS = 3500;
-
-  function setTransform(){
-    track.style.transform = `translateX(${-index * 100}%)`;
-    [...dotsWrap.children].forEach((d, di) => d.classList.toggle("is-active", di === index));
-  }
-
-  function next(){
-    if(slides.length <= 1) return;
-    index = (index + 1) % slides.length;
-    setTransform();
-  }
-
-  function prev(){
-    if(slides.length <= 1) return;
-    index = (index - 1 + slides.length) % slides.length;
-    setTransform();
-  }
-
-  function start(){
-    stop();
-    if(slides.length <= 1) return;
-    timer = setInterval(next, AUTOPLAY_MS);
-  }
-
-  function stop(){
-    if(timer) clearInterval(timer);
-    timer = null;
-  }
-
-  function openLightbox(src){
-    let lb = document.querySelector(".agenda-lightbox");
-    let lbImg = lb ? lb.querySelector("img") : null;
-
-    if(!lb){
-      lb = document.createElement("div");
-      lb.className = "agenda-lightbox";
-      lb.innerHTML = `<div class="agenda-lightbox__backdrop"></div><img alt="Agenda" />`;
-      document.body.appendChild(lb);
-      lbImg = lb.querySelector("img");
-
-      lb.addEventListener("click", () => lb.classList.remove("is-open"));
-      document.addEventListener("keydown", (e) => {
-        if(e.key === "Escape") lb.classList.remove("is-open");
-      });
-    }
-
-    lbImg.src = src;
-    lb.classList.add("is-open");
-  }
-
-  (function ensureLightboxCSS(){
-    if(document.getElementById("agendaLightboxCSS")) return;
-    const s = document.createElement("style");
-    s.id = "agendaLightboxCSS";
-    s.textContent = `
-      .agenda-lightbox{
-        position: fixed; inset: 0; z-index: 9999;
-        display: none; place-items: center;
-      }
-      .agenda-lightbox.is-open{ display: grid; }
-      .agenda-lightbox__backdrop{
-        position:absolute; inset:0;
-        background: rgba(0,0,0,.82);
-      }
-      .agenda-lightbox img{
-        position: relative;
-        max-width: min(92vw, 1100px);
-        max-height: 86vh;
-        border-radius: 14px;
-        box-shadow: 0 30px 90px rgba(0,0,0,.55);
-      }
-    `;
-    document.head.appendChild(s);
-  })();
-
-  function addSlide(resolvedSrc){
-    const slide = document.createElement("div");
+  const counter = document.getElementById("agendaCounter");
+  let posterIndex = 0;
+  const slides = posters.map((poster, index) => {
+    const slide = document.createElement("button");
     slide.className = "agenda-slide";
-    slide.innerHTML = `<img src="${resolvedSrc}" alt="Agenda" loading="lazy">`;
-    const img = slide.querySelector("img");
-    img.addEventListener("click", () => openLightbox(resolvedSrc));
-    track.appendChild(slide);
-    slides.push(resolvedSrc);
-  }
-
-  function addDot(){
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "agenda-dot";
-    dot.addEventListener("click", () => {
-      index = [...dotsWrap.children].indexOf(dot);
-      setTransform();
-      start();
+    slide.type = "button";
+    slide.setAttribute("aria-label", "Ampliar " + poster.cap);
+    const img = document.createElement("img");
+    img.alt = poster.cap;
+    img.decoding = "async";
+    img.loading = "lazy";
+    slide.append(img);
+    slide.addEventListener("click", () => openLightbox(posters, index, slide));
+    track.append(slide);
+    return slide;
+  });
+  function showPoster(nextIndex) {
+    posterIndex = (nextIndex + posters.length) % posters.length;
+    track.style.transform = "translateX(" + -posterIndex * 100 + "%)";
+    slides.forEach((slide, index) => {
+      slide.inert = index !== posterIndex;
+      slide.setAttribute("aria-hidden", String(index !== posterIndex));
+      if (index === posterIndex)
+        setResponsiveImage(
+          slide.querySelector("img"),
+          posters[index].src,
+          "(max-width: 760px) 340px, 310px",
+        );
     });
-    dotsWrap.appendChild(dot);
+    counter.textContent =
+      String(posterIndex + 1).padStart(2, "0") + " / " + posters.length;
   }
+  document
+    .querySelector(".agenda-nav--prev")
+    .addEventListener("click", () => showPoster(posterIndex - 1));
+  document
+    .querySelector(".agenda-nav--next")
+    .addEventListener("click", () => showPoster(posterIndex + 1));
+  showPoster(0);
 
-  async function resolveSrc(i){
-    const opts = candidates(i);
-    for(const src of opts){
-      const ok = await new Promise((res) => {
-        const img = new Image();
-        img.onload = () => res(true);
-        img.onerror = () => res(false);
-        img.src = src;
-      });
-      if(ok) return src;
-    }
-    return null;
+  // Shared accessible viewer for photos and posters.
+  const lightbox = document.getElementById("lightbox");
+  const lbImage = document.getElementById("lbImg");
+  const lbCaption = document.getElementById("lbCap");
+  const close = document.getElementById("lbClose");
+  const previous = document.getElementById("lbPrev");
+  const next = document.getElementById("lbNext");
+  const background = [...document.body.children].filter(
+    (element) => element !== lightbox && element.tagName !== "SCRIPT",
+  );
+  let lightboxItems = [];
+  let lightboxIndex = 0;
+  let trigger = null;
+  function showImage(index) {
+    lightboxIndex = (index + lightboxItems.length) % lightboxItems.length;
+    const item = lightboxItems[lightboxIndex];
+    setResponsiveImage(lbImage, item.src, "90vw");
+    document.getElementById("lbOriginal").href = item.src;
+    lbImage.alt = item.cap;
+    lbCaption.textContent =
+      item.cap + " · " + (lightboxIndex + 1) + " / " + lightboxItems.length;
   }
-
-  (async function build(){
-    const HARD_CAP = 500;
-    const MISS_LIMIT = 8;
-    let missStreak = 0;
-    const found = [];
-
-    for (let i = 1; i <= HARD_CAP; i++) {
-      const src = await resolveSrc(i);
-      if (src) {
-        found.push(i);
-        missStreak = 0;
-      } else {
-        missStreak++;
-        if (missStreak >= MISS_LIMIT) break;
-      }
+  function openLightbox(items, index, opener) {
+    trigger = opener;
+    lightboxItems = items;
+    showImage(index);
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    close.focus();
+    background.forEach((element) => {
+      element.inert = true;
+    });
+  }
+  function closeLightbox() {
+    background.forEach((element) => {
+      element.inert = false;
+    });
+    lightbox.classList.remove("is-open");
+    document.body.classList.remove("modal-open");
+    if (trigger) trigger.focus({ preventScroll: true });
+    lightbox.setAttribute("aria-hidden", "true");
+  }
+  close.addEventListener("click", closeLightbox);
+  previous.addEventListener("click", () => showImage(lightboxIndex - 1));
+  next.addEventListener("click", () => showImage(lightboxIndex + 1));
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  lightbox.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeLightbox();
     }
-
-    if (found.length === 0) {
-      track.innerHTML = `<div style="padding:16px;opacity:.8">Sem imagens de agenda ainda.</div>`;
-      dotsWrap.style.display = "none";
-      return;
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showImage(lightboxIndex + 1);
     }
-
-    found.sort((a, b) => b - a);
-
-    for (const i of found) {
-      const src = await resolveSrc(i);
-      if (src) {
-        addSlide(src);
-        addDot();
-      }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showImage(lightboxIndex - 1);
     }
-
-    const prevBtn = document.querySelector(".agenda-nav--prev");
-    const nextBtn = document.querySelector(".agenda-nav--next");
-    if (prevBtn) prevBtn.addEventListener("click", () => { prev(); start(); });
-    if (nextBtn) nextBtn.addEventListener("click", () => { next(); start(); });
-
-    const carousel = document.querySelector(".agenda-carousel");
-    if (carousel) {
-      carousel.addEventListener("mouseenter", stop);
-      carousel.addEventListener("mouseleave", start);
-      carousel.addEventListener("focusin", stop);
-      carousel.addEventListener("focusout", start);
+    if (event.key === "Tab") {
+      const controls = [
+        close,
+        previous,
+        next,
+        document.getElementById("lbOriginal"),
+      ];
+      const index = controls.indexOf(document.activeElement);
+      event.preventDefault();
+      controls[
+        (index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length
+      ].focus();
     }
-
-    index = 0;
-    setTransform();
-    start();
-  })();
+  });
 })();

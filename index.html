@@ -1,408 +1,879 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#090b10" />
+    <title>Banda SU7 | Somos Um em Cristo</title>
+    <meta
+      name="description"
+      content="Somos Um em Cristo. Conheça a Banda SU7: rock gospel, músicas autorais, agenda de shows, vídeos e contato para eventos."
+    />
+    <meta property="og:title" content="Banda SU7 | Somos Um em Cristo" />
+    <meta
+      property="og:description"
+      content="A nossa fé. O nosso som. Conheça as músicas, a história e a agenda da Banda SU7."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://www.bandasu7.com.br/assets/img/Hero.png"
+    />
+    <link
+      rel="icon"
+      href="assets/img/responsive/logo-png-480.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" id="top">
+      <div class="container header-row">
+        <a class="brand" href="#home" aria-label="Banda SU7 — início">
+          <img
+            src="assets/img/responsive/logo-png-480.webp"
+            srcset="
+              assets/img/responsive/logo-png-480.webp 480w,
+              assets/img/responsive/logo-png-960.webp 960w
+            "
+            sizes="94px"
+            alt="Banda SU7"
+            class="brand-logo"
+            width="1280"
+            height="519"
+          />
+        </a>
+        <nav
+          class="nav"
+          id="main-nav"
+          aria-label="Navegação principal"
+          data-nav
+        >
+          <a href="#home" class="nav-link is-active" aria-current="location"
+            >Início</a
+          >
+          <a href="#destaque" class="nav-link">Músicas</a>
+          <a href="#agendas" class="nav-link">Agenda</a>
+          <a href="#sobre" class="nav-link">A banda</a>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BANDA SU7 | Site Oficial</title>
-  <meta name="description"
-    content="Banda SU7 (Somos Um em Cristo) — rock gospel. Músicas, vídeos, galeria e contato via WhatsApp." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="BANDA SU7 | Site Oficial" />
-  <meta property="og:description" content="Rock gospel — músicas, vídeos, galeria e contato via WhatsApp." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/Hero.png" />
-
-  <link rel="icon" href="assets/img/logo.png" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-
-<body>
-  <!-- Header -->
-  <header class="site-header" id="top">
-    <div class="container header-row">
-      <a class="brand" href="#top" aria-label="Ir para o topo">
-        <img src="assets/img/logo.png" alt="Logo da Banda SU7" class="brand-logo" />
-      </a>
-
-      <nav class="nav" aria-label="Navegação principal" data-nav>
-        <a href="#home" class="nav-link is-active">Home</a>
-        <a href="#agendas" class="nav-link">Agendas</a>
-        <a href="#sobre" class="nav-link">Sobre</a>
-        <a href="#musicas" class="nav-link">Músicas</a>
-        <a href="#live" class="nav-link">Live</a>
-        <a href="#galeria" class="nav-link">Galeria</a>
-        <a href="#contato" class="nav-link">Contato</a>
-      </nav>
-
-      <div class="header-actions">
-        <div class="social">
-          <a class="icon-btn" href="https://www.instagram.com/bandasu7oficial/" target="_blank"
-            rel="noreferrer noopener" aria-label="Instagram da Banda SU7">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1z" />
-            </svg>
-          </a>
+          <a href="#live" class="nav-link">Vídeos</a>
+          <a href="#galeria" class="nav-link">Galeria</a>
+          <a href="#contato" class="nav-link nav-contact">Contato</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-small header-cta" href="#contato"
+            >Leve a SU7 ao seu evento <span aria-hidden="true">↗</span></a
+          >
+          <button
+            class="hamburger"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="main-nav"
+            data-hamburger
+          >
+            <span></span><span></span>
+          </button>
         </div>
-
-<a class="icon-btn icon-btn--wa" href="https://wa.me/556584722445" target="_blank" rel="noreferrer noopener"
-  aria-label="WhatsApp da Banda SU7">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <!-- Bolha preenchida, telefone vazado (transparente) -->
-    <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M12 2C6.48 2 2 6.15 2 11.27c0 1.84.57 3.63 1.64 5.15L2.6 22l5.85-1.62c1.06.56 2.26.86 3.55.86 5.52 0 10-4.15 10-9.27S17.52 2 12 2z
-         M16.63 13.71c-.19.5-1.11.96-1.56 1.02-.41.06-.93.09-1.5-.08-.35-.11-.8-.26-1.38-.55-2.43-1.2-4.02-3.33-4.14-3.49-.12-.16-.99-1.3-.99-2.48 0-1.18.64-1.76.87-2 .23-.24.5-.3.67-.3.17 0 .34 0 .49.01.16.01.37-.06.58.44.21.5.72 1.73.78 1.85.06.12.1.27.02.43-.08.16-.12.27-.24.41-.12.14-.25.31-.36.41-.12.1-.24.22-.1.43.14.22.63 1.02 1.35 1.65.93.81 1.72 1.06 1.97 1.18.25.12.4.1.55-.06.15-.16.63-.73.8-.98.17-.25.34-.2.57-.12.23.08 1.46.67 1.71.79.25.12.41.18.47.28.06.1.06.58-.13 1.08z" />
-  </svg>
-</a>
-
-
-        <button class="hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" data-hamburger>
-          <span></span><span></span><span></span>
-        </button>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="home">
-    <!-- HERO (SEM NADA POR CIMA) -->
-    <section class="hero" aria-label="Banner principal">
-      <img class="hero-img" src="assets/img/Hero.png" alt="Banda SU7 — banner" />
-    </section>
-
-    <!-- MÚSICAS + LIVE (layout 2 colunas) -->
-    <section class="section section-media" id="agendas" aria-label="Sobre, músicas e vídeos">
-      <!-- Background: vídeo em loop (com fallback em background.png via CSS) -->
-      <video class="section-media__bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"
-        tabindex="-1">
-        <source src="assets/videos/VideoLoop.mp4" type="video/mp4" />
-      </video>
-      <div class="section-media__overlay" aria-hidden="true"></div>
-
-      <div class="container section-media__content">
-
-        <!-- AGENDAS (dentro da sessão de mídia) -->
-        <div class="media-agendas" aria-label="Agendas">
-          <div class="media-agendas__left">
-            <div class="kicker">AGENDAS</div>
-
-            <div class="agenda-list" role="list">
-              <div class="agenda-item" role="listitem">
-                <div class="agenda-date">30 MAI 2026</div>
-                <div class="agenda-title">CULTO DE JOVENS - 19H</div>
-                <div class="agenda-loc">IGREJA ÁGAPE • CUIABÁ • MT</div>
-              </div>
-
-              <div class="agenda-divider" aria-hidden="true"></div>
-
-               <div class="agenda-item" role="listitem">
-                <div class="agenda-date">13 JUN 2026</div>
-                <div class="agenda-title">DIFLEN - PRÉ CONFERENCE - 20H</div>
-                <div class="agenda-loc">PAZ CHURCH • CUIABÁ • MT</div>
-              </div>
-
-              <div class="agenda-divider" aria-hidden="true"></div>
-
-              <div class="agenda-item" role="listitem">
-                <div class="agenda-date">21 JUN 2026</div>
-                <div class="agenda-title">SHOW GOSPEL PEDRA 90 CUIABÁ - 19H</div>
-                <div class="agenda-loc">CUIABÁ • MT</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="media-agendas__right">
-            <div class="agenda-carousel" aria-label="Carrossel de fotos de agendas">
-              <button class="agenda-nav agenda-nav--prev" type="button" aria-label="Imagem anterior">‹</button>
-
-              <div class="agenda-viewport">
-                <div class="agenda-track" id="agendaTrack">
-                  <!-- preenchido via JS automaticamente: Agenda-001.png ... -->
-                </div>
-              </div>
-
-              <button class="agenda-nav agenda-nav--next" type="button" aria-label="Próxima imagem">›</button>
-            </div>
-
-            <div class="agenda-dots" id="agendaDots" aria-hidden="true"></div>
-          </div>
+    <main id="conteudo" tabindex="-1">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-stage" aria-hidden="true">
+          <img
+            class="hero-poster"
+            src="assets/img/responsive/show-poster-960.webp"
+            alt=""
+            width="960"
+            height="1706"
+            fetchpriority="high"
+          />
+          <video
+            id="heroVideo"
+            class="hero-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            tabindex="-1"
+            disablepictureinpicture
+            data-desktop-src="assets/videos/show-desktop.mp4"
+            data-mobile-src="assets/videos/show-mobile.mp4"
+          ></video>
         </div>
-
-
-        <!-- SOBRE + PODCAST -->
-        <div class="media-top" id="sobre">
-          <div class="media-about">
-            <div class="kicker">SOBRE</div>
-            <h2 class="media-title">SU7 — Somos Um em Cristo</h2>
-
-            <p class="media-text">
-              A Banda SU7, cujo nome significa <strong>&quot;Somos Um em Cristo&quot;</strong>, reflete uma identidade
-              espiritual profunda, com o número <strong>7</strong>
-              simbolizando perfeição divina e unidade em Cristo. Fundada em 2015, a banda combina elementos de rock com
-              o propósito de adorar e servir ao Senhor Jesus.
-              Além de difundir sua mensagem de fé e amor, a SU7 transcende as fronteiras da igreja local para alcançar
-              corações necessitados da esperança e salvação encontradas em Cristo,
-              atingindo diversos públicos. Nossa missão é transmitir a palavra de Deus e criar experiências edificantes
-              através da música gospel, sendo um instrumento de transformação e
-              redenção de vidas. Nossa abordagem musical é autêntica e inspiradora, promovendo uma adoração sincera
-              baseada nos princípios bíblicos e no compromisso com a verdade.
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <div class="hero-topline">
+            <span class="live-mark"
+              ><span class="status-dot"></span> SU7 NO PALCO</span
+            ><button
+              class="video-toggle"
+              id="videoToggle"
+              type="button"
+              aria-controls="heroVideo"
+              hidden
+            >
+              <span data-video-icon aria-hidden="true">Ⅱ</span
+              ><span data-video-label>Pausar vídeo</span>
+            </button>
+          </div>
+          <div class="hero-message">
+            <p class="eyebrow">ROCK GOSPEL · SOMOS UM EM CRISTO</p>
+            <h1 id="hero-title">A nossa fé.<br />O nosso <em>som.</em></h1>
+            <p class="hero-description">
+              A energia do palco.<br />Uma mensagem que vai além dele.
             </p>
-
-            <div class="media-verse" aria-label="Versículo">
-              <div class="media-verse__ref">GÁLATAS 3:28</div>
-              <div class="media-verse__text">“...porque todos vós sois um em Cristo Jesus.”</div>
+            <div class="button-row">
+              <a class="btn btn-primary" href="#destaque"
+                ><span class="play-icon" aria-hidden="true">▶</span> Ouça Filho
+                de Davi</a
+              >
+              <a class="btn btn-ghost" href="#contato"
+                >Leve a SU7 ao seu evento <span aria-hidden="true">↗</span></a
+              >
             </div>
           </div>
-
-
+          <div class="hero-footer">
+            <div>
+              <strong>CUIABÁ, MT</strong
+              ><span>Desde 2015, juntos no mesmo propósito.</span>
+            </div>
+            <a class="hero-feature-link" href="#destaque"
+              ><img
+                src="assets/img/responsive/filho-de-davi-cover.webp"
+                alt=""
+                width="64"
+                height="64"
+              /><span
+                ><small>EM DESTAQUE</small><strong>Filho de Davi</strong></span
+              ><span class="mini-play" aria-hidden="true">↘</span></a
+            >
+          </div>
         </div>
+      </section>
 
-        <!-- MÚSICAS + AMOSTRA -->
-        <div class="media-bottom" id="musicas" aria-label="Músicas e amostra">
-          <div class="media-players" aria-label="Músicas (Spotify e YouTube)">
-            <div class="kicker">MÚSICAS</div>
+      <section
+        class="section featured-section"
+        id="destaque"
+        aria-labelledby="featured-title"
+      >
+        <div class="container featured-layout">
+          <div class="featured-copy">
+            <p class="eyebrow">
+              <span class="status-dot"></span> AUMENTE O VOLUME
+            </p>
+            <h2 id="featured-title">Filho <br />de <em>Davi.</em></h2>
+            <p class="featured-credit">
+              BANDA SU7 <span>—</span> MÚSICA AUTORAL
+            </p>
+            <p class="section-text">
+              Nossa música, nossa fé, nossa identidade.<br />Dê o play e leve
+              essa mensagem com você.
+            </p>
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=bHc_WxYSxEs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ouvir no YouTube <span aria-hidden="true">↗</span></a
+            >
+            <a class="featured-more" href="#musicas"
+              >Conheça também nossas outras músicas ↓</a
+            >
+          </div>
+          <div class="featured-media">
+            <div class="featured-player" id="featuredPlayer">
+              <button
+                class="featured-play"
+                id="playFeatured"
+                type="button"
+                aria-label="Reproduzir Filho de Davi, da Banda SU7"
+              >
+                <img
+                  src="assets/img/responsive/filho-de-davi-jpg-960.webp"
+                  srcset="
+                    assets/img/responsive/filho-de-davi-jpg-480.webp 480w,
+                    assets/img/responsive/filho-de-davi-jpg-960.webp 960w
+                  "
+                  sizes="(max-width: 760px) calc(100vw - 40px), 55vw"
+                  alt="Capa oficial de Filho de Davi, com um leão em tons de laranja"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                />
+                <span class="featured-play-overlay"
+                  ><span class="featured-play-circle" aria-hidden="true">▶</span
+                  ><span>OUVIR AGORA</span></span
+                >
+              </button>
+            </div>
+            <div class="featured-caption">
+              <span>Filho de Davi · Banda SU7</span
+              ><a
+                href="https://www.youtube.com/watch?v=bHc_WxYSxEs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >YouTube ↗</a
+              >
+            </div>
+            <noscript
+              ><p>
+                <a
+                  class="text-link"
+                  href="https://www.youtube.com/watch?v=bHc_WxYSxEs"
+                  >Ouvir Filho de Davi no YouTube ↗</a
+                >
+              </p></noscript
+            >
+          </div>
+        </div>
+      </section>
 
-            <div class="player-stack">
-              <div class="player-card" aria-label="No Centro da Tua Vontade (Spotify)">
-                <div class="player-embed player-embed--spotify">
-                  <iframe data-testid="embed-iframe" style="border-radius:12px"
-                    src="https://open.spotify.com/embed/track/4UncTxzbZF5fHT3PKjRLjS?utm_source=generator" width="100%"
-                    height="152" frameBorder="0" allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"></iframe>
+      <section
+        class="section agenda-section"
+        id="agendas"
+        aria-labelledby="agenda-title"
+      >
+        <div class="container agenda-layout">
+          <div class="agenda-copy">
+            <p class="eyebrow">NOS ENCONTRAMOS NO PALCO</p>
+            <h2 class="section-title" id="agenda-title">
+              O próximo encontro<br />pode ser <em>com você.</em>
+            </h2>
+            <p class="section-text">
+              Acompanhe a agenda e venha viver esse som com a gente.
+            </p>
+            <div class="agenda-list" role="list">
+              <article
+                class="agenda-item"
+                role="listitem"
+                data-event-date="2026-11-02"
+              >
+                <time class="agenda-date" datetime="2026-11-02T18:30:00-04:00"
+                  ><strong>02</strong><span>NOV / 2026</span></time
+                >
+                <div class="agenda-details">
+                  <span class="event-status">AGENDA</span>
+                  <h3>Gravação do audiovisual MultiShowGospel</h3>
+                  <p>Pão da Vida, bairro Paiaguaias · Cuiabá, MT</p>
+                  <span class="event-time">18h30</span>
+                </div>
+                <span class="event-arrow" aria-hidden="true">↗</span>
+              </article>
+              <article
+                class="agenda-item"
+                role="listitem"
+                data-event-date="2026-10-08"
+              >
+                <time class="agenda-date" datetime="2026-10-08T19:00:00-04:00"
+                  ><strong>08</strong><span>OUT / 2026</span></time
+                >
+                <div class="agenda-details">
+                  <span class="event-status">AGENDA</span>
+                  <h3>VI Feira Cultural</h3>
+                  <p>Quadra Poliesportiva Sol Nascente · Cuiabá, MT</p>
+                  <span class="event-time">19h</span>
+                </div>
+                <span class="event-arrow" aria-hidden="true">↗</span>
+              </article>
+            </div>
+            <a
+              class="text-link"
+              href="https://wa.me/556584722445"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Quer a SU7 no seu evento? Vamos conversar
+              <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="agenda-posters">
+            <div
+              class="agenda-carousel"
+              aria-label="Cartazes dos eventos da SU7"
+              aria-roledescription="carrossel"
+            >
+              <div class="agenda-viewport">
+                <div class="agenda-track" id="agendaTrack"></div>
+              </div>
+              <div class="agenda-controls">
+                <span
+                  class="agenda-counter"
+                  id="agendaCounter"
+                  aria-live="polite"
+                  >13</span
+                >
+                <div>
+                  <button
+                    class="agenda-nav agenda-nav--prev"
+                    type="button"
+                    aria-label="Cartaz anterior"
+                  >
+                    ←</button
+                  ><button
+                    class="agenda-nav agenda-nav--next"
+                    type="button"
+                    aria-label="Próximo cartaz"
+                  >
+                    →
+                  </button>
                 </div>
               </div>
+            </div>
+            <p class="poster-hint">
+              NOSSA HISTÓRIA EM CADA PALCO · CLIQUE PARA AMPLIAR
+            </p>
+            <noscript
+              ><img
+                src="assets/img/responsive/agendas/Agenda-013-png-480.webp"
+                srcset="
+                  assets/img/responsive/agendas/Agenda-013-png-480.webp 480w,
+                  assets/img/responsive/agendas/Agenda-013-png-960.webp 896w
+                "
+                sizes="(max-width: 760px) calc(100vw - 40px), 550px"
+                alt="Cartaz de evento da SU7"
+                loading="lazy"
+            /></noscript>
+          </div>
+        </div>
+      </section>
 
-              <div class="player-card" aria-label="Jesus é o Caminho (Spotify)">
-                <div class="player-embed player-embed--spotify">
-                  <iframe data-testid="embed-iframe" style="border-radius:12px"
-                    src="https://open.spotify.com/embed/track/2IQWQqZ9ww4BE6eoZzP67F?utm_source=generator" width="100%"
-                    height="152" frameBorder="0" allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"></iframe>
-                </div>
-              </div>
+      <section
+        class="section about-section"
+        id="sobre"
+        aria-labelledby="about-title"
+      >
+        <div class="container about-layout">
+          <figure class="about-photo">
+            <img
+              src="assets/img/responsive/Su7-001-jpg-480.webp"
+              srcset="
+                assets/img/responsive/Su7-001-jpg-480.webp 480w,
+                assets/img/responsive/Su7-001-jpg-960.webp 960w
+              "
+              sizes="(max-width: 760px) calc(100vw - 40px), 550px"
+              alt="Registros do vocalista e dos instrumentistas da SU7 em apresentação ao vivo"
+              width="1080"
+              height="1350"
+              loading="lazy"
+            />
+            <figcaption>
+              <span class="status-dot"></span> SU7 · A NOSSA ESSÊNCIA É AO VIVO
+            </figcaption>
+          </figure>
+          <div class="about-copy">
+            <p class="eyebrow">MUITO ALÉM DA MÚSICA</p>
+            <h2 class="section-title" id="about-title">
+              Cinco integrantes.<br />Uma só <em>missão.</em>
+            </h2>
+            <p class="about-lead">
+              SU7 significa <strong>Somos Um em Cristo.</strong><br />É o que
+              nos une. É o que nos move.
+            </p>
+            <p class="section-text">
+              Desde 2015, unimos a energia do rock ao propósito de adorar e
+              servir a Jesus. O número 7 em nosso nome representa a perfeição
+              divina e a unidade em Cristo.
+            </p>
+            <p class="section-text">
+              Nossa música atravessa as fronteiras da igreja para levar uma
+              mensagem de fé, amor e esperança. Cada composição, cada encontro e
+              cada palco são uma oportunidade de tocar corações.
+            </p>
+            <blockquote class="verse">
+              <p>“...porque todos vós sois um em Cristo Jesus.”</p>
+              <cite>GÁLATAS 3:28</cite>
+            </blockquote>
+            <a class="text-link" href="#integrantes"
+              >Conheça quem faz esse som <span aria-hidden="true">↓</span></a
+            >
+          </div>
+        </div>
+      </section>
 
-              <div class="player-card" aria-label="Filho de Davi (YouTube)">
-                <div class="player-embed player-embed--youtube">
-                  <iframe style="border-radius:12px" width="100%" height="152"
-                    src="https://www.youtube.com/embed/bHc_WxYSxEs?si=pDuc4b4S2yPWBomN"
-                    title="FILHO DE DAVI — Banda SU7" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                </div>
+      <section
+        class="section music-section"
+        id="musicas"
+        aria-labelledby="music-title"
+      >
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">DÊ O PLAY</p>
+              <h2 class="section-title" id="music-title">
+                Mais do nosso <em>som.</em>
+              </h2>
+            </div>
+            <p class="section-text">
+              Músicas autorais, fé e identidade.<br />Aperte o play e aumente o
+              volume.
+            </p>
+          </div>
+          <div class="music-layout">
+            <div class="music-tracks">
+              <div class="subsection-heading">
+                <h3>Ouça a SU7</h3>
+                <span>NAS PLATAFORMAS DIGITAIS</span>
               </div>
+              <div class="track-heading">
+                <h4>No Centro da Tua Vontade</h4>
+                <a
+                  href="https://open.spotify.com/track/4UncTxzbZF5fHT3PKjRLjS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ouvir No Centro da Tua Vontade no Spotify"
+                  >Spotify ↗</a
+                >
+              </div>
+              <div class="player-card">
+                <iframe
+                  src="https://open.spotify.com/embed/track/4UncTxzbZF5fHT3PKjRLjS?utm_source=generator&amp;theme=0"
+                  width="100%"
+                  height="152"
+                  title="No Centro da Tua Vontade — Banda SU7 no Spotify"
+                  allow="
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    fullscreen;
+                    picture-in-picture;
+                  "
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="track-heading">
+                <h4>Jesus é o Caminho</h4>
+                <a
+                  href="https://open.spotify.com/track/2IQWQqZ9ww4BE6eoZzP67F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ouvir Jesus é o Caminho no Spotify"
+                  >Spotify ↗</a
+                >
+              </div>
+              <div class="player-card">
+                <iframe
+                  src="https://open.spotify.com/embed/track/2IQWQqZ9ww4BE6eoZzP67F?utm_source=generator&amp;theme=0"
+                  width="100%"
+                  height="152"
+                  title="Jesus é o Caminho — Banda SU7 no Spotify"
+                  allow="
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    fullscreen;
+                    picture-in-picture;
+                  "
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+            <article class="reel-feature" id="ao-vivo">
+              <div class="reel-heading">
+                <span class="eyebrow">DIRETO DO PALCO</span
+                ><span class="reel-label">AO VIVO</span>
+              </div>
+              <div class="reel-wrap">
+                <video
+                  class="reel"
+                  controls
+                  playsinline
+                  preload="none"
+                  poster="assets/img/responsive/Fabio-001-jpg-960.webp"
+                  aria-label="Trecho ao vivo de Leão de Judá, nova versão"
+                >
+                  <source src="assets/videos/video-001.mp4" type="video/mp4" />
+                  Seu navegador não suporta vídeo em HTML5.
+                </video>
+              </div>
+              <div class="reel-caption">
+                <div>
+                  <h3>Leão de Judá</h3>
+                  <p>Nova versão · Um pouco da energia do nosso show.</p>
+                </div>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section podcast-section"
+        id="live"
+        aria-labelledby="podcast-title"
+      >
+        <div class="container podcast-layout">
+          <div class="podcast-copy">
+            <p class="eyebrow">FORA DOS PALCOS</p>
+            <h2 class="section-title" id="podcast-title">
+              Por trás<br />de cada <em>acorde.</em>
+            </h2>
+            <p class="section-text">
+              Nossa trajetória, nossas músicas e uma boa conversa no podcast
+              <strong>Falando de Áudio.</strong>
+            </p>
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=QveKPBhZJVs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Assistir no YouTube <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="podcast-video">
+            <div class="embed">
+              <iframe
+                src="https://www.youtube.com/embed/QveKPBhZJVs?rel=0"
+                title="Podcast Falando de Áudio — Banda SU7"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="track-caption">
+              <span>Falando de Áudio — Banda SU7</span><span>PODCAST</span>
             </div>
           </div>
+        </div>
+      </section>
 
-          <article class="media-reel" aria-label="Amostra — Nova versão da música Leão de Judá">
-            <div class="kicker">AMOSTRA</div>
-            <h3 class="reel-title">Leão de Judá (nova versão)</h3>
-
-            <div class="reel-wrap">
-              <video class="reel" controls playsinline preload="metadata">
-                <source src="assets/videos/video-001.mp4" type="video/mp4" />
-                Seu navegador não suporta vídeo em HTML5.
-              </video>
+      <section
+        class="section members-section"
+        id="integrantes"
+        aria-labelledby="members-title"
+      >
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">QUEM FAZ ESSE SOM</p>
+              <h2 class="section-title" id="members-title">
+                Juntos, somos <em>SU7.</em>
+              </h2>
             </div>
-
-            <p class="reel-text">Spoiler de um evento — solo de guitarra.</p>
-          </article>
-        </div>
-
-
-         <aside class="media-podcast" id="live" aria-label="Podcast Falando de Áudio">
-              <div class="kicker">PODCAST</div>
-              <h3 class="podcast-title">Falando de Áudio</h3>
-              <p class="podcast-text">Episódio com a trajetória da SU7 e músicas autorais.</p>
-
-              <div class="embed embed--youtube">
-                <iframe src="https://www.youtube.com/embed/QveKPBhZJVs?rel=0&modestbranding=1"
-                  title="Podcast Falando de Áudio – Banda SU7" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen loading="lazy">
-                </iframe>
-              </div>
-
-            </aside>
-      </div>
-    </section>
-
-
-    <!-- INTEGRANTES -->
-    <section class="section section-dark" id="integrantes">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Integrantes</h2>
-          <p class="section-text section-text--members">Conhe&ccedil;a a trajet&oacute;ria dos integrantes da SU7.</p>
-        </div>
-
-        <div class="members-carousel" id="membersCarousel" aria-roledescription="carousel"
-          aria-label="Mini biografias dos integrantes da SU7">
-          <div class="members-topbar">
-            <div class="members-tabs" id="memberTabs" role="tablist" aria-label="Selecionar integrante"></div>
+            <p class="section-text">
+              Histórias diferentes.<br />O mesmo propósito.
+            </p>
           </div>
-
-          <div class="members-shell" id="memberPanelShell"></div>
-        </div>
-
-        <div class="members-grid">
-          <article class="member-card">
-            <div class="member-photo" style="background-image:url('assets/img/Max-001.jpg');"></div>
-            <div class="member-meta">
-              <h3>Max</h3>
-              <p>Voz</p>
-              <a class="member-ig" href="https://www.instagram.com/maxxvoz/" target="_blank"
-                rel="noreferrer noopener">@maxxvoz</a>
+          <div
+            class="members-carousel"
+            id="membersCarousel"
+            aria-label="Conheça os integrantes da SU7"
+          >
+            <div class="members-topbar">
+              <div
+                class="members-tabs"
+                id="memberTabs"
+                role="tablist"
+                aria-label="Selecionar integrante"
+              ></div>
             </div>
-          </article>
-
-          <article class="member-card">
-            <div class="member-photo" style="background-image:url('assets/img/Davi-001.jpg');"></div>
-            <div class="member-meta">
-              <h3>Davi</h3>
-              <p>Baixo</p>
-              <a class="member-ig" href="https://www.instagram.com/davi.su7/" target="_blank"
-                rel="noreferrer noopener">@davi.su7</a>
-            </div>
-          </article>
-
-          <article class="member-card">
-            <div class="member-photo" style="background-image:url('assets/img/Djow-001.jpg');"></div>
-            <div class="member-meta">
-              <h3>Djow Kielek</h3>
-              <p>Bateria</p>
-              <a class="member-ig" href="https://www.instagram.com/djow_kielek/" target="_blank"
-                rel="noreferrer noopener">@djow_kielek</a>
-            </div>
-          </article>
-
-          <article class="member-card">
-            <div class="member-photo" style="background-image:url('assets/img/Jonas-002.jpg');"></div>
-            <div class="member-meta">
-              <h3>Jonas</h3>
-              <p>Teclado</p>
-              <a class="member-ig" href="https://www.instagram.com/jonassouzamusic/" target="_blank"
-                rel="noreferrer noopener">@jonassouzamusic</a>
-            </div>
-          </article>
-
-          <article class="member-card">
-            <div class="member-photo" style="background-image:url('assets/img/Fabio-001.jpg');"></div>
-            <div class="member-meta">
-              <h3>F&aacute;bio Rockeiro</h3>
-              <p>Guitarra</p>
-              <a class="member-ig" href="https://www.instagram.com/brincarderock/" target="_blank"
-                rel="noreferrer noopener">@brincarderock</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE (bio) -->
-    <!-- GALERIA -->
-    <section class="section" id="galeria">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Galeria</h2>
-          <p class="section-text">Fotos em v&aacute;rios cortes e tamanhos. Passe o mouse e clique para abrir.</p>
-        </div>
-
-        <div class="mosaic" id="mosaic"></div>
-      </div>
-    </section>
-
-    <!-- CONTATO (WhatsApp: SU7 + Produtora) -->
-    <section class="section section-dark" id="contato" aria-label="Contato">
-      <div class="container">
-        <div class="final-cta final-cta--split">
-          <!-- SU7 -->
-          <div class="final-cta__left">
-            <h2>Fale com a SU7</h2>
-            <p>Agendas, Entrevistas, Podcasts, Participações especiais entre outros.</p>
-
-            <div class="su7-contact">
-              <a class="su7-qr" href="https://wa.me/556584722445" target="_blank" rel="noreferrer noopener"
-                aria-label="Abrir WhatsApp da SU7">
-                <img class="su7-qr__img"
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&data=https://wa.me/556584722445"
-                  alt="QR Code do WhatsApp da Banda SU7" loading="lazy" />
-              </a>
-
-              <div class="su7-phone">
-                <a class="contact-link" href="tel:+556584722445">+55 65 8472-2445</a>
-              </div>
-
-              <div class="su7-actions">
-                <a class="btn btn-primary btn-xl btn-block" href="https://wa.me/556584722445" target="_blank"
-                  rel="noreferrer noopener">
-                  Chamar no WhatsApp
-                </a>
-              </div>
-            </div>
-
-
+            <div class="members-shell" id="memberPanelShell"></div>
           </div>
-
-          <!-- MULTISHOW -->
-          <aside class="final-cta__right" aria-label="Produtora oficial (MultiShowGospel)">
-            <div class="partner-card">
-              <img class="partner-logo" src="assets/img/mmm2-1024x530.png" alt="MultiShowGospel" loading="lazy" />
-
-              <div class="partner-actions">
-                <div class="partner-copy">
-                  <div class="partner-title">Produção de Shows</div>
-                  <div class="partner-sub">Logística • Negociação</div>
-                </div>
-
-                <a class="btn btn-ghost btn-block" href="https://wa.me/5565999056500" target="_blank"
-                  rel="noreferrer noopener">
-                  Falar com a Produtora
-                </a>
-
-                <div class="partner-phone">
-                  <a class="contact-link" href="tel:+5565999056500">(65) 99905-6500</a>
-                  <span class="dot">•</span>
-                  <a class="contact-link" href="mailto:producoesmsg@gmail.com">producoesmsg@gmail.com</a>
-                </div>
+          <div class="members-grid">
+            <article class="member-card">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url(&quot;assets/img/responsive/Max-001-jpg-480.webp&quot;);
+                "
+              ></div>
+              <div class="member-meta">
+                <h3>Max</h3>
+                <p>Voz</p>
+                <a
+                  class="member-ig"
+                  href="https://www.instagram.com/maxxvoz/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >@maxxvoz</a
+                >
               </div>
+            </article>
+
+            <article class="member-card">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url(&quot;assets/img/responsive/Davi-001-jpg-480.webp&quot;);
+                "
+              ></div>
+              <div class="member-meta">
+                <h3>Davi</h3>
+                <p>Baixo</p>
+                <a
+                  class="member-ig"
+                  href="https://www.instagram.com/davi.su7/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >@davi.su7</a
+                >
+              </div>
+            </article>
+
+            <article class="member-card">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url(&quot;assets/img/responsive/Djow-001-jpg-480.webp&quot;);
+                "
+              ></div>
+              <div class="member-meta">
+                <h3>Djow Kielek</h3>
+                <p>Bateria</p>
+                <a
+                  class="member-ig"
+                  href="https://www.instagram.com/djow_kielek/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >@djow_kielek</a
+                >
+              </div>
+            </article>
+
+            <article class="member-card">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url(&quot;assets/img/responsive/Jonas-002-jpg-480.webp&quot;);
+                "
+              ></div>
+              <div class="member-meta">
+                <h3>Jonas</h3>
+                <p>Teclado</p>
+                <a
+                  class="member-ig"
+                  href="https://www.instagram.com/jonassouzamusic/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >@jonassouzamusic</a
+                >
+              </div>
+            </article>
+
+            <article class="member-card">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url(&quot;assets/img/responsive/Fabio-001-jpg-480.webp&quot;);
+                "
+              ></div>
+              <div class="member-meta">
+                <h3>F&aacute;bio Rockeiro</h3>
+                <p>Guitarra</p>
+                <a
+                  class="member-ig"
+                  href="https://www.instagram.com/brincarderock/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >@brincarderock</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section gallery-section"
+        id="galeria"
+        aria-labelledby="gallery-title"
+      >
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">CADA PALCO, UMA HISTÓRIA</p>
+              <h2 class="section-title" id="gallery-title">
+                Momentos que <em>ficam.</em>
+              </h2>
+            </div>
+            <a
+              class="text-link"
+              href="https://www.instagram.com/bandasu7oficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Siga @bandasu7oficial <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="mosaic" id="mosaic"></div>
+          <div class="gallery-actions">
+            <button
+              class="btn btn-ghost"
+              id="galleryMore"
+              type="button"
+              aria-expanded="false"
+              aria-controls="mosaic"
+              hidden
+            >
+              Ver todas as fotos <span aria-hidden="true">＋</span>
+            </button>
+          </div>
+          <noscript
+            ><p class="section-text">
+              Veja mais fotos da banda no
+              <a
+                class="text-link"
+                href="https://www.instagram.com/bandasu7oficial/"
+                >nosso Instagram</a
+              >.
+            </p></noscript
+          >
+        </div>
+      </section>
+
+      <section
+        class="section contact-section"
+        id="contato"
+        aria-labelledby="contact-title"
+      >
+        <div class="container contact-layout">
+          <div class="contact-copy">
+            <p class="eyebrow">VAMOS FAZER PARTE DA SUA HISTÓRIA</p>
+            <h2 id="contact-title">
+              O próximo palco<br />pode ser o <em>seu.</em>
+            </h2>
+            <p>
+              Cada evento tem uma proposta. Conte a sua ideia e vamos conversar
+              sobre o formato da apresentação.
+            </p>
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/556584722445"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Fale com a SU7 no WhatsApp <span aria-hidden="true">↗</span></a
+            >
+            <div class="booking-links">
+              <a class="text-link" href="#ao-vivo"
+                >Veja a banda ao vivo <span aria-hidden="true">↗</span></a
+              ><a class="text-link" href="#destaque"
+                >Ouça nossas músicas <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <div class="contact-details">
+              <a href="tel:+556584722445">+55 65 8472-2445</a><span>·</span
+              ><a
+                href="https://www.instagram.com/bandasu7oficial/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram ↗</a
+              >
+            </div>
+          </div>
+          <aside
+            class="partner-card"
+            aria-label="Produção de shows MultiShowGospel"
+          >
+            <span class="eyebrow">PRODUÇÃO DE SHOWS</span
+            ><img
+              class="partner-logo"
+              src="assets/img/responsive/mmm2-1024x530-png-480.webp"
+              srcset="
+                assets/img/responsive/mmm2-1024x530-png-480.webp 480w,
+                assets/img/responsive/mmm2-1024x530-png-960.webp 500w
+              "
+              sizes="200px"
+              alt="MultiShowGospel"
+              width="500"
+              height="273"
+              loading="lazy"
+            />
+            <p>Logística, produção e negociação.</p>
+            <a
+              class="btn btn-ghost"
+              href="https://wa.me/5565999056500"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Falar com a produtora <span aria-hidden="true">↗</span></a
+            >
+            <div class="partner-phone">
+              <a href="tel:+5565999056500">(65) 99905-6500</a
+              ><a href="mailto:producoesmsg@gmail.com"
+                >producoesmsg@gmail.com</a
+              >
             </div>
           </aside>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="footer">
       <div class="container footer-row">
-        <div class="footer-left">
-          <img src="assets/img/logo.png" alt="Logo SU7" class="footer-logo" />
-          <div>
-            <div class="footer-title">BANDA SU7</div>
-            <div class="footer-sub">© <span id="year"></span> • Todos os direitos reservados. Site criado por Fábio Rockeiro</div>
-          </div>
+        <div class="footer-brand">
+          <img
+            src="assets/img/responsive/logo-png-480.webp"
+            srcset="
+              assets/img/responsive/logo-png-480.webp 480w,
+              assets/img/responsive/logo-png-960.webp 960w
+            "
+            sizes="94px"
+            alt="Banda SU7"
+            class="footer-logo"
+            width="1280"
+            height="519"
+          /><span>SOMOS UM EM CRISTO.</span>
         </div>
-
-        <div class="footer-right">
-          <a href="#top" class="footer-link">Topo ↑</a>
-          <a href="https://www.instagram.com/bandasu7oficial/" class="footer-link" target="_blank"
-            rel="noreferrer noopener">Instagram</a>
-        </div>
+        <p>
+          © <span id="year">2026</span> Banda SU7. Todos os direitos
+          reservados.<br /><span>Site criado por Fábio Rockeiro.</span>
+        </p>
+        <a class="text-link" href="#home">Voltar ao topo ↑</a>
       </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
-      <button class="lb-close" type="button" aria-label="Fechar" id="lbClose">&times;</button>
-      <button class="lb-nav lb-prev" type="button" aria-label="Anterior" id="lbPrev">&lsaquo;</button>
-      <button class="lb-nav lb-next" type="button" aria-label="Pr&oacute;ximo" id="lbNext">&rsaquo;</button>
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-label="Fotos da Banda SU7"
+      tabindex="-1"
+    >
+      <button
+        class="lb-close"
+        type="button"
+        aria-label="Fechar foto"
+        id="lbClose"
+      >
+        ×
+      </button>
+      <button
+        class="lb-nav lb-prev"
+        type="button"
+        aria-label="Foto anterior"
+        id="lbPrev"
+      >
+        ←
+      </button>
+      <button
+        class="lb-nav lb-next"
+        type="button"
+        aria-label="Próxima foto"
+        id="lbNext"
+      >
+        →
+      </button>
+      <a
+        class="lb-original"
+        id="lbOriginal"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Abrir imagem original ↗</a
+      >
       <img class="lb-img" id="lbImg" alt="Foto da galeria SU7" />
-      <div class="lb-cap" id="lbCap"></div>
+      <div class="lb-cap" id="lbCap" aria-live="polite"></div>
     </div>
-  </main>
-
-  <script src="assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>
