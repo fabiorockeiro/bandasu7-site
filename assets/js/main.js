@@ -117,12 +117,22 @@
   const featuredPlay = document.getElementById("playFeatured");
   featuredPlay.addEventListener("click", () => {
     const iframe = document.createElement("iframe");
-    iframe.src = "https://www.youtube.com/embed/bHc_WxYSxEs?autoplay=1&rel=0";
+    const embedUrl = new URL("https://www.youtube-nocookie.com/embed/bHc_WxYSxEs");
+    embedUrl.search = new URLSearchParams({
+      autoplay: "1",
+      rel: "0",
+      playsinline: "1",
+    });
+    // Use the actual HTTP origin, including when previewing on localhost.
+    if (["http:", "https:"].includes(window.location.protocol)) {
+      embedUrl.searchParams.set("origin", window.location.origin);
+    }
     iframe.title = "Filho de Davi — Banda SU7";
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.src = embedUrl.href;
     document.getElementById("featuredPlayer").replaceChildren(iframe);
     featurePlaying = true;
     heroVideo.pause();
